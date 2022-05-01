@@ -1,0 +1,27 @@
+.menu {
+  margin-top: .5rem;
+  padding-left: 10px;
+}
+
+.menu ul li {
+  list-style: none;
+  margin: 0;
+  padding: .5rem 1rem;
+  border-radius: 3px;
+}
+
+.menu ul li:hover {
+  background-color: #444;
+}
+
+.menu a:hover {
+  text-decoration: none;
+}
+
+.menu h3 a {
+  color: white;
+}
+
+.menu h3 a:hover {
+  color: #00bc8c;
+}
