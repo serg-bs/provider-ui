@@ -1,49 +1,56 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 // import { Redirect } from 'react-router-dom';
-import SwapiService from '../../services/swapi-service'
 
-export default class LoginPage extends Component {
-    swapiService = new SwapiService();
 
-    state = {};
+const LoginPage = ({isLoggedIn, onLogin}) => {
 
-    constructor() {
-        super();
-        // this.updatePlanet();
+    // if (isLoggedIn) {
+    //     return <Redirect to="/"/>;
+    // }
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        var {login, password} = document.forms[0];
+        console.log('Hi0');
+        console.log(login.value);
+        console.log(password.value);
+        console.log('Hi');
+        const response =  onLogin({login: login.value, password: password.value});
+        // response.then((data)=> {
+        //     console.log(data);
+        // })
+        console.log('Hi2');
+        console.log(response);
     }
 
 
-    // onPlanetLoaded = (planet) => {
-    //     this.setState({ planet });
-    // };
-
-    updatePlanet() {
-        const id = 12;
-        this.swapiService
-            .getPlanet(id)
-            .then(this.onPlanetLoaded);
-    }
-
-    render() {
-        return (
-            <div className="jumbotron">
-                <p>Login to see secret page!</p>
-
+    return (
+        <div className="jumbotron">
+            <p>Login to see secret page!</p>
+            <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="exampleInputPassword1" className="form-label mt-4">Login</label>
-                    <input id="login" className="form-control" placeholder="Введите логин"></input>
+                    <input id="login"
+                           name="login"
+                           value="serg"
+                           className="form-control"
+                           placeholder="Введите логин"></input>
                     <label htmlFor="exampleInputPassword1" className="form-label mt-4">Password</label>
-                    <input id="password" className="form-control" placeholder="Введите пароль" type="password"></input>
+                    <input id="password"
+                           name="password"
+                           type="password"
+                           value="password"
+                           className="form-control"
+                           placeholder="Введите пароль"></input>
                 </div>
                 <div className="form-group">
-                    <button className="btn btn-primary"
-                        // onClick={onLogin}
-                    >
+                    <button className="btn btn-primary" type="submit">
                         Login
                     </button>
                 </div>
-            </div>
-        );
-    }
+            </form>
+        </div>
+    );
 }
+
+export default LoginPage;
 

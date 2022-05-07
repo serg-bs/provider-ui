@@ -1,30 +1,40 @@
-import React from 'react';
-
-import Menu from '../menu';
-import RandomPlanet from '../random-planet';
-import ItemList from '../item-list';
-import PersonDetails from '../person-details';
+import React, {Component} from 'react';
 
 import './app.css';
 import LoginPage from "../pages/login-page";
+import SwapiService from '../../services/swapi-service'
 
-const App = () => {
-  return (
-    <div>
-      <LoginPage/>
-      {/*<Menu />*/}
-      {/*<RandomPlanet />*/}
+export default class App extends Component {
 
-      {/*<div className="row mb2">*/}
-      {/*  <div className="col-md-6">*/}
-      {/*    <ItemList />*/}
-      {/*  </div>*/}
-      {/*  <div className="col-md-6">*/}
-      {/*    <PersonDetails />*/}
-      {/*  </div>*/}
-      {/*</div>*/}
-    </div>
-  );
-};
+    swapiService = new SwapiService();
 
-export default App;
+    state = {
+        isLoggedIn: false,
+        jwt: ''
+    };
+
+    onLogin = (payload) => {
+        console.log(payload);
+        let promise = this.swapiService.login(payload);
+        promise.then((data) => {
+            console.log(data);
+            this.setState({
+                isLoggedIn: true,
+                jwt: data.jwt
+            });
+        })
+    };
+
+    render() {
+        const {isLoggedIn} = this.state;
+        return (
+
+
+            <div>
+                <LoginPage isLoggedIn={this.state.isLoggedIn}
+                           onLogin={this.onLogin}/>
+            </div>
+        );
+    }
+}
+
