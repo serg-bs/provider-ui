@@ -1,39 +1,54 @@
+import React, {useContext} from "react";
 
+const Context = React.createContext();
 
 export default class SwapiService {
 
     _apiBase = 'http://localhost:8001/api';
     _imageBase = 'https://starwars-visualguide.com/assets/img';
 
-    getResourceByPost = async (url, payload) => {
-        const res = await this.postResource(url, payload);
+
+    getResourceByPost = async (url, payload, jwt) => {
+        const res = await this.postResource(url, payload, jwt);
+        if (res.status == 403 ||
+            res.status == 401) {
+            throw new Error('Redirect to login')
+        }
         if (!res.ok) {
             throw new Error(`Could not fetch ${url}` + `, received ${res.status}`)
         }
         return await res.json();
     };
 
-    async postResource(url, payload) {
+    async postResource(url, payload, jwt) {
         const res = await fetch(`${this._apiBase}${url}`,
             {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
+                    'Access-Control-Allow-Origin': '*',
+                    'Authorization': `Bearer ${jwt}`
                 },
                 body: JSON.stringify(payload)
             });
         return res;
     }
 
-    getResourceByGet = async (url, payload) => {
+    getResourceByGet = async (url, jwt) => {
         const res = await fetch(`${this._apiBase}${url}`,
             {
                 method: 'GET',
-                headers: { 'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'},
-                body: JSON.stringify(payload)
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Authorization': `Bearer ${jwt}`
+                }
             });
+        console.log(`Status${res.status}`)
+        if (res.status == 403 ||
+            res.status == 401) {
+            throw new Error('Redirect to login')
+        }
         if (!res.ok) {
             throw new Error(`Could not fetch ${url}` + `, received ${res.status}`)
         }
@@ -45,14 +60,11 @@ export default class SwapiService {
     };
 
     register = async (payload) => {
-        return await this.postResource(`/clients/`, payload);
+        return await this.postResource(`/clients/`, payload, null);
     };
 
-    async getClient(id) {
-        console.log(id);
-        const client = await this.getResourceByGet(`/clients/${id}`);
-        console.log(client);
-        console.log(client.name);
+    async getClient(id, jwt) {
+        const client = await this.getResourceByGet(`/clients/${id}`, jwt);
         return client;
     };
 

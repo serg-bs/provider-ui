@@ -1,20 +1,14 @@
 import React, {useState} from 'react';
 import {Link, Redirect, withRouter} from 'react-router-dom';
 import SwapiService from "../../services/swapi-service";
-import redirect from "react-router-dom/Redirect";
 
-
-const RegisterPage = ({isLoggedIn, history}) => {
+const RegisterPage = ({history}) => {
 
     const [errorMessages, setErrorMessages] = useState('');
 
-    if (isLoggedIn) {
-        return <Redirect to="/"/>;
-    }
     const handleSubmit = (event) => {
         event.preventDefault();
         var {name, lastname, login, password} = document.forms[0];
-
         let res = new SwapiService().register(
             {
                 name: name.value,
@@ -25,7 +19,6 @@ const RegisterPage = ({isLoggedIn, history}) => {
             if( !res.ok ) {
                 return res.json();
             } else {
-                alert('redirect')
                 history.push(`/login`);
             }
         }).then(data => {

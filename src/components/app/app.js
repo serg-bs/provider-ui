@@ -8,6 +8,7 @@ import PersonDetails from "../person-details";
 import ErrorBoundry from "../error-boundry";
 import RegisterPage from "../pages/register-page";
 
+
 export default class App extends Component {
 
     swapiService = new SwapiService();
@@ -22,13 +23,13 @@ export default class App extends Component {
         return promise.then((data) => {
             this.setState({
                 isLoggedIn: true,
-                jwt: data.jwt
+                jwt: data.access_token
             });
         })
     };
 
     render() {
-        const {isLoggedIn} = this.state;
+        const {isLoggedIn, jwt} = this.state;
         return (
             <ErrorBoundry>
                 <Router>
@@ -36,7 +37,7 @@ export default class App extends Component {
                         <Switch>
                             <Route path="/"
                                    render={() => (
-                                       <PersonDetails/>
+                                       <PersonDetails jwt={jwt}/>
                                    )}
                                    exact/>
                             <Route path="/register"
@@ -51,7 +52,6 @@ export default class App extends Component {
                                                onLogin={this.onLogin}/>
                                 )}/>
                         </Switch>
-
                     </div>
                 </Router>
             </ErrorBoundry>

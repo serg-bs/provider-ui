@@ -4,6 +4,8 @@ import './person-details.css';
 import SwapiService from "../../services/swapi-service";
 import ErrorIndicator from "../error-indicator";
 import Spinner from "../spinner";
+import ErrorAuth from "../error-auth";
+import {Redirect} from "react-router-dom";
 
 export default class PersonDetails extends Component {
 
@@ -11,17 +13,28 @@ export default class PersonDetails extends Component {
 
     state = {
         data: null,
-        hasError: false
+        hasError: false,
+        isLoggedIn: true
     };
 
-    onError = () => {
-        this.setState({
-            hasError: true
-        })
+    onError = (error) => {
+        if (error && error.message === 'Redirect to login') {
+            this.setState({
+                isLoggedIn: false
+            })
+        } else {
+            this.setState({
+                hasError: true
+            })
+        }
     };
 
     componentDidMount() {
-        this.swapiService.getClient(2)
+
+        const { jwt } = this.props;
+        console.log(`PPPPPPPPPP${jwt}`)
+        console.log(jwt)
+        this.swapiService.getClient(2, jwt)
             .then((data) => {
                 this.setState({
                     data,
@@ -33,19 +46,20 @@ export default class PersonDetails extends Component {
 
 
     render() {
-        const {hasError, data} = this.state;
-        if(hasError){
+        const {hasError, data, isLoggedIn} = this.state;
+        if (!isLoggedIn) {
+            return <ErrorAuth/>
+        }
+        if (hasError) {
             return <ErrorIndicator/>
         }
         if (!data) {
-            return<Spinner/>;
+            return <Spinner/>;
         }
 
         return (
 
             <div className="person-details card">
-
-
                 <div className="card-body">
                     <h4>{data.name}</h4>
                     <h4>{data.surename}</h4>
