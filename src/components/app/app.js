@@ -8,9 +8,7 @@ import PersonDetails from "../person-details";
 import ErrorBoundry from "../error-boundry";
 import RegisterPage from "../pages/register-page";
 
-
 export default class App extends Component {
-
     swapiService = new SwapiService();
 
     state = {

@@ -34,6 +34,21 @@ export default class SwapiService {
         return res;
     }
 
+    async postResource(url, payload) {
+        console.log(payload)
+        const res = await fetch(`${this._apiBase}${url}`,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                body: JSON.stringify(payload)
+            });
+        return res;
+    }
+
+
     getResourceByGet = async (url, jwt) => {
         const res = await fetch(`${this._apiBase}${url}`,
             {
@@ -67,6 +82,12 @@ export default class SwapiService {
         const client = await this.getResourceByGet(`/clients/${id}`, jwt);
         return client;
     };
+
+    async findByLogin(login){
+
+        return await this.postResource(`/clients/findByLogin/`, {"login": login});
+    };
+
 
     getAccounts = async (payload2) => {
 

@@ -5,7 +5,6 @@ import SwapiService from "../../services/swapi-service";
 import ErrorIndicator from "../error-indicator";
 import Spinner from "../spinner";
 import ErrorAuth from "../error-auth";
-import {Redirect} from "react-router-dom";
 
 export default class PersonDetails extends Component {
 
@@ -30,10 +29,7 @@ export default class PersonDetails extends Component {
     };
 
     componentDidMount() {
-
         const { jwt } = this.props;
-        console.log(`PPPPPPPPPP${jwt}`)
-        console.log(jwt)
         this.swapiService.getClient(2, jwt)
             .then((data) => {
                 this.setState({

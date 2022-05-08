@@ -5,18 +5,24 @@ import SwapiService from "../../services/swapi-service";
 const RegisterPage = ({history}) => {
 
     const [errorMessages, setErrorMessages] = useState('');
+    const [loginError, setLoginError] = useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        if (loginError !== '') {
+            return;
+        }
+
         var {name, lastname, login, password} = document.forms[0];
         let res = new SwapiService().register(
             {
                 name: name.value,
                 lastname: lastname.value,
                 login: login.value,
-                password: password.value}
+                password: password.value
+            }
         ).then((res) => {
-            if( !res.ok ) {
+            if (!res.ok) {
                 return res.json();
             } else {
                 history.push(`/login`);
@@ -29,9 +35,28 @@ const RegisterPage = ({history}) => {
         });
     }
 
+    const checkLogin = () => {
+        var {login} = document.forms[0];
+        new SwapiService().findByLogin(login.value)
+            .then(res => {
+                return res.json();
+            }).then(data => {
+            if (data.found === true) {
+                setLoginError('Такой логин уже занят')
+            } else {
+                setLoginError('')
+            }
+        })
+    };
+
     const renderErrorMessage = () => (
         errorMessages !== "" && (
             <div className="error">{errorMessages}</div>)
+    );
+
+    const renderLoginMessage = () => (
+        loginError !== "" && (
+            <div className="error-indicator">{loginError}</div>)
     );
 
     return (
@@ -81,7 +106,10 @@ const RegisterPage = ({history}) => {
                            name="login"
                         // value="serg"
                            className="form-control"
-                           placeholder="Введите логин"></input>
+                           placeholder="Введите логин"
+                           onChange={checkLogin}
+                    ></input>
+                    {renderLoginMessage()}
                     <label htmlFor="exampleInputPassword1" className="form-label mt-4">Password</label>
                     <input id="password"
                            name="password"
@@ -96,7 +124,6 @@ const RegisterPage = ({history}) => {
                         // value="password"
                            className="form-control"
                            placeholder="Введите пароль"></input>
-                    <p>First time? <Link to="/register">Create an account</Link>.</p>
                 </div>
                 <div className="form-group">
                     <button className="btn btn-primary" type="submit">
