@@ -6,13 +6,37 @@ export default class SwapiService {
     _imageBase = 'https://starwars-visualguide.com/assets/img';
 
     getResourceByPost = async (url, payload) => {
+        const res = await this.postResource(url, payload);
+        if (!res.ok) {
+            throw new Error(`Could not fetch ${url}` + `, received ${res.status}`)
+        }
+        return await res.json();
+    };
+
+    async postResource(url, payload) {
         const res = await fetch(`${this._apiBase}${url}`,
             {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'},
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
                 body: JSON.stringify(payload)
             });
+        return res;
+    }
+
+    getResourceByGet = async (url, payload) => {
+        const res = await fetch(`${this._apiBase}${url}`,
+            {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'},
+                body: JSON.stringify(payload)
+            });
+        if (!res.ok) {
+            throw new Error(`Could not fetch ${url}` + `, received ${res.status}`)
+        }
         return await res.json();
     };
 
@@ -20,13 +44,16 @@ export default class SwapiService {
         return await this.getResourceByPost(`/clients/login/`, payload);
     };
 
-    async getAccounts2() {
-        const payload = {
-            "accountId": 786878
-        };
-        const accounts = await this.getResourceByPost(`/accounts`, payload);
-        console.log(accounts);
-        return accounts;
+    register = async (payload) => {
+        return await this.postResource(`/clients/`, payload);
+    };
+
+    async getClient(id) {
+        console.log(id);
+        const client = await this.getResourceByGet(`/clients/${id}`);
+        console.log(client);
+        console.log(client.name);
+        return client;
     };
 
     getAccounts = async (payload2) => {

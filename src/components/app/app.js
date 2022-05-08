@@ -4,6 +4,9 @@ import './app.css';
 import LoginPage from "../pages/login-page";
 import SwapiService from '../../services/swapi-service'
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import PersonDetails from "../person-details";
+import ErrorBoundry from "../error-boundry";
+import RegisterPage from "../pages/register-page";
 
 export default class App extends Component {
 
@@ -15,10 +18,8 @@ export default class App extends Component {
     };
 
     onLogin = (payload) => {
-        console.log(payload);
         let promise = this.swapiService.login(payload);
-        promise.then((data) => {
-            console.log(data);
+        return promise.then((data) => {
             this.setState({
                 isLoggedIn: true,
                 jwt: data.jwt
@@ -29,31 +30,31 @@ export default class App extends Component {
     render() {
         const {isLoggedIn} = this.state;
         return (
+            <ErrorBoundry>
+                <Router>
+                    <div>
+                        <Switch>
+                            <Route path="/"
+                                   render={() => (
+                                       <PersonDetails/>
+                                   )}
+                                   exact/>
+                            <Route path="/register"
+                                   render={() => (
+                                       <RegisterPage/>
+                                   )}
+                                   exact/>
+                            <Route
+                                path="/login"
+                                render={() => (
+                                    <LoginPage isLoggedIn={isLoggedIn}
+                                               onLogin={this.onLogin}/>
+                                )}/>
+                        </Switch>
 
-
-            <div>
-                <LoginPage isLoggedIn={this.state.isLoggedIn}
-                           onLogin={this.onLogin}/>
-            </div>
-        );
-    }
-
-    render() {
-        const {isLoggedIn} = this.state;
-        return (
-            <Router>
-                <div>
-                    <Switch>
-                        <Route
-                            path="/login"
-                            render={() => (
-                                <LoginPage isLoggedIn={this.state.isLoggedIn}
-                                           onLogin={this.onLogin}/>
-                            )}/>
-                    </Switch>
-
-                </div>
-            </Router>
+                    </div>
+                </Router>
+            </ErrorBoundry>
         );
     }
 }
