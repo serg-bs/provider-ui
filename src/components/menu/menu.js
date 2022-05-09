@@ -25,18 +25,18 @@ export default class Menu extends Component {
 
         return (
             <ul className="list">
-                <il>
+                <li>
                     <Link to="/" ><button className={class1}>Главная</button></Link>
-                </il>
-                <il className="block-2">
+                </li>
+                <li className="block-2">
                     <button className={class1}> Тарифы</button>
-                </il>
-                <il className="block-3">
+                </li>
+                <li className="block-3">
                     <button className={class1}> Платежи</button>
-                </il>
-                <il className="block-4">
+                </li>
+                <li className="block-4">
                     <button className={class1}> Инфо</button>
-                </il>
+                </li>
             </ul>
         )
     };

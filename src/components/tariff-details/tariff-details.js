@@ -35,8 +35,10 @@ export default class TariffDetails extends Component {
 
         // const user = jwt(jwtToken);
 
-        swapiService.getTariffs( jwtToken)
+        swapiService.getTariffs(jwtToken)
             .then((data) => {
+                console.log('GGGGGGGGGG')
+                console.log(data)
                 this.setState({
                     data,
                     error: false
@@ -46,6 +48,7 @@ export default class TariffDetails extends Component {
 
     render() {
         const {hasError, data, isLoggedIn} = this.state;
+        console.log(data)
         if (!isLoggedIn) {
             return <ErrorAuth/>
         }
@@ -57,10 +60,9 @@ export default class TariffDetails extends Component {
         }
 
         return (
-
             <div>
                 <Menu/>
-                <Tariffs></Tariffs>
+                <Tariffs tariffData={data}></Tariffs>
             </div>
         )
     }
