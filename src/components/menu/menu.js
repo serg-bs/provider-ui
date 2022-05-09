@@ -7,18 +7,18 @@ export default class Menu extends Component {
 const class1="btn btn-secondary"
         return (
             <ul className="list">
-                <li>
+                <il>
                     <Link to="/" ><button type="button" className={class1}>Главная</button></Link>
-                </li>
-                <li>
-                    <button type="button" className={class1}> Тарифы</button>
-                </li>
-                <li>
-                    <button type="button" className={class1}> Платежи</button>
-                </li>
-                <li>
-                    <button type="button" className={class1}> Инфо</button>
-                </li>
+                </il>
+                <il>
+                    <Link to="/tariff" ><button type="button" className={class1}> Тарифы</button></Link>
+                </il>
+                <il>
+                    <Link to="/" ><button type="button" className={class1}> Платежи</button></Link>
+                </il>
+                <il>
+                    <Link to="/" ><button type="button" className={class1}> Инфо</button></Link>
+                </il>
             </ul>
         )
     };
