@@ -1,0 +1,14 @@
+.info {
+    position: absolute;
+    top: 220px;
+    color: white;
+    font-size: x-large;
+    left: 750px;
+}
+.Par {
+    position: absolute;
+    color: white;
+    top: 220px;
+    font-size: x-large;
+    left: 880px;
+}

@@ -7,17 +7,21 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import PersonDetails from "../person-details";
 import ErrorBoundry from "../error-boundry";
 import RegisterPage from "../pages/register-page";
+import { SwapiServiceProvider } from '../swapi-service-context';
+import DummySwapiService from "../../services/dummy-swapi-service";
 
 export default class App extends Component {
-    swapiService = new SwapiService();
+
 
     state = {
         isLoggedIn: false,
-        jwt: ''
+        jwt: '',
+        // swapiService: new SwapiService()
+        swapiService: new DummySwapiService()
     };
 
     onLogin = (payload) => {
-        let promise = this.swapiService.login(payload);
+        let promise = this.state.swapiService.login(payload);
         return promise.then((data) => {
             this.setState({
                 isLoggedIn: true,
@@ -27,15 +31,18 @@ export default class App extends Component {
     };
 
     render() {
-        const {isLoggedIn, jwt} = this.state;
+        const {isLoggedIn, jwt, swapiService} = this.state;
+        console.log(swapiService)
+        console.log(jwt)
         return (
+            <SwapiServiceProvider value={this.state.swapiService} >
             <ErrorBoundry>
                 <Router>
                     <div>
                         <Switch>
                             <Route path="/"
                                    render={() => (
-                                       <PersonDetails jwt={jwt}/>
+                                       <PersonDetails jwt={jwt} swapiService={swapiService}/>
                                    )}
                                    exact/>
                             <Route path="/register"
@@ -47,12 +54,14 @@ export default class App extends Component {
                                 path="/login"
                                 render={() => (
                                     <LoginPage isLoggedIn={isLoggedIn}
-                                               onLogin={this.onLogin}/>
+                                               onLogin={this.onLogin}
+                                               swapiService={swapiService}/>
                                 )}/>
                         </Switch>
                     </div>
                 </Router>
             </ErrorBoundry>
+            </SwapiServiceProvider>
         );
     }
 }
