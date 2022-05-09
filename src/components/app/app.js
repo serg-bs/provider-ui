@@ -9,6 +9,7 @@ import ErrorBoundry from "../error-boundry";
 import RegisterPage from "../pages/register-page";
 import { SwapiServiceProvider } from '../swapi-service-context';
 import DummySwapiService from "../../services/dummy-swapi-service";
+import TariffDetails from "../tariff-details";
 
 export default class App extends Component {
 
@@ -42,7 +43,12 @@ export default class App extends Component {
                         <Switch>
                             <Route path="/"
                                    render={() => (
-                                       <PersonDetails jwt={jwt} swapiService={swapiService}/>
+                                       <PersonDetails jwtToken={jwt} swapiService={swapiService}/>
+                                   )}
+                                   exact/>
+                            <Route path="/tariff"
+                                   render={() => (
+                                       <TariffDetails jwtToken={jwt} swapiService={swapiService}/>
                                    )}
                                    exact/>
                             <Route path="/register"

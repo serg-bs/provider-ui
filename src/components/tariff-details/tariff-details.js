@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import './person-details.css';
+import './tariff-details.css';
 import SwapiService from "../../services/swapi-service";
 import ErrorIndicator from "../error-indicator";
 import Spinner from "../spinner";
@@ -10,7 +10,7 @@ import MainPage from "../main-page/main-page";
 import Tariffs from "../tarrifs/tariffs";
 import jwt from 'jwt-decode'
 
-export default class PersonDetails extends Component {
+export default class TariffDetails extends Component {
 
     state = {
         data: null,
@@ -35,7 +35,7 @@ export default class PersonDetails extends Component {
 
         // const user = jwt(jwtToken);
 
-        swapiService.getClient(2, jwtToken)
+        swapiService.getTariffs( jwtToken)
             .then((data) => {
                 this.setState({
                     data,
@@ -43,7 +43,6 @@ export default class PersonDetails extends Component {
                 });
             }).catch(this.onError);
     }
-
 
     render() {
         const {hasError, data, isLoggedIn} = this.state;
@@ -61,13 +60,7 @@ export default class PersonDetails extends Component {
 
             <div>
                 <Menu/>
-                <MainPage {...data}/>
-
-                {/*<Tariffs></Tariffs>*/}
-
-
-
-
+                <Tariffs></Tariffs>
             </div>
         )
     }

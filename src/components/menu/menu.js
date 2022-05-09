@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import './menu.css';
+import {Link} from "react-router-dom";
 
 export default class Menu extends Component {
     state = {
@@ -25,7 +26,7 @@ export default class Menu extends Component {
         return (
             <ul className="list">
                 <il>
-                    <button className={class1} onClick={this.MainClick}> Главная</button>
+                    <Link to="/" ><button className={class1}>Главная</button></Link>
                 </il>
                 <il className="block-2">
                     <button className={class1}> Тарифы</button>

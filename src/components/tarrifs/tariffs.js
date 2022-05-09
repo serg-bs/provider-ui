@@ -25,9 +25,6 @@ const Tariffs = () => {
             </thead>
             <tbody>{elements}</tbody>
         </table>
-
-
-
     );
 };
 export default Tariffs

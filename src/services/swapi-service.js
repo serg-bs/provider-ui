@@ -1,12 +1,9 @@
 import React, {useContext} from "react";
 
-const Context = React.createContext();
 
 export default class SwapiService {
 
     _apiBase = 'http://localhost:8001/api';
-    _imageBase = 'https://starwars-visualguide.com/assets/img';
-
 
     getResourceByPost = async (url, payload, jwt) => {
         const res = await this.postResource(url, payload, jwt);
@@ -78,19 +75,21 @@ export default class SwapiService {
         return await this.postResource(`/clients/`, payload, null);
     };
 
-    async getClient(id, jwt) {
+    getClient = async (id, jwt) => {
         const client = await this.getResourceByGet(`/clients/${id}`, jwt);
         return client;
     };
 
-    async findByLogin(login){
+    getTariffs = async (jwt) => {
+        const client = await this.getResourceByGet(`/tariffs/`, jwt);
+        return client;
+    };
 
+    async findByLogin(login){
         return await this.postResource(`/clients/findByLogin/`, {"login": login});
     };
 
-
     getAccounts = async (payload2) => {
-
         const response = await fetch('http://localhost:8001/api/accounts/', {
             method: 'POST',
             headers: {
