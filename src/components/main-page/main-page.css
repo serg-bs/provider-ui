@@ -1,14 +1,24 @@
-.info {
-    position: absolute;
-    top: 220px;
-    color: white;
-    font-size: x-large;
-    left: 750px;
+
+.person-details {
+    display: flex;
+    margin-top: 1rem;
+    flex-direction: row;
+    padding: 1rem;
 }
-.Par {
-    position: absolute;
-    color: white;
-    top: 220px;
-    font-size: x-large;
-    left: 880px;
+
+.person-details .person-image {
+    width: 30%;
+    height: 30%;
+    border-radius: 10px;
+}
+
+.person-details .list-group-item {
+    padding: .25rem;
+}
+
+.person-details .list-group-item .term{
+    margin-right: .5rem;
+}
+.top {
+    top: 100px;
 }
