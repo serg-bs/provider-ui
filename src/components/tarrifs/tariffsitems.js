@@ -1,10 +1,8 @@
 import React from "react";
 
-const Tariffsitems = ({tariff}) => {
-
-    const {name, speed, price} = tariff;
+const Tariffsitems = (props) => {
+    const {name, speed, price} = props;
     return (
-
         <tr>
             <th scope="row"></th>
             <td>{name}</td>

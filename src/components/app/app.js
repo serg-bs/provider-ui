@@ -17,7 +17,7 @@ export default class App extends Component {
     state = {
         isLoggedIn: false,
         jwt: '',
-        // swapiService: new SwapiService()
+        //swapiService: new SwapiService()
         swapiService: new DummySwapiService()
     };
 

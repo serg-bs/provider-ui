@@ -1,17 +1,15 @@
 import React from "react";
 import "./list.css"
 import Tariffsitems from "./tariffsitems";
-const Tariffs = () => {
-    const tariffData = [
-        { name: "My first tariff", speed: 100, price: 1000},
-        { name: "My second tariff", speed: 2000, price: 2000},
-        { name: "My third tariff", speed: 9000, price: 3000}
-    ];
+const Tariffs = (props) => {
+    const {tariffData} = props;
+
     const elements = tariffData.map((item) => {
         return (
-            <Tariffsitems tariff={item}/>
+            <Tariffsitems {...item}/>
         )
     })
+    console.log(elements)
     return (
         <table className="table position">
             <thead className="list-head">

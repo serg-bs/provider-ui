@@ -56,7 +56,6 @@ export default class SwapiService {
                     'Authorization': `Bearer ${jwt}`
                 }
             });
-        console.log(`Status${res.status}`)
         if (res.status == 403 ||
             res.status == 401) {
             throw new Error('Redirect to login')
@@ -81,8 +80,8 @@ export default class SwapiService {
     };
 
     getTariffs = async (jwt) => {
-        const client = await this.getResourceByGet(`/tariffs/`, jwt);
-        return client;
+        const res = await this.getResourceByGet(`/tariffs/`, jwt);
+        return res;
     };
 
     async findByLogin(login){

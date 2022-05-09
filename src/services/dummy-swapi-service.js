@@ -1,23 +1,5 @@
 export default class DummySwapiService {
 
-  _people = [
-    {
-      id: 1,
-      name: 'Bilbo Baggins [TEST DATA]',
-      gender: 'male',
-      birthYear: 'long ago',
-      eyeColor: 'dark brown'
-    },
-
-    {
-      id: 2,
-      name: 'Frodo Baggins [TEST DATA]',
-      gender: 'male',
-      birthYear: 'long ago',
-      eyeColor: 'dark brown'
-    }
-  ];
-
   _client = {
     "id": 2,
     "name": "Patrik",
@@ -29,8 +11,14 @@ export default class DummySwapiService {
     "email": "patric@yandex.ru"
   }
 
-  getAllPeople = async () => {
-    return this._people;
+  _tariffs = [
+      { name: "My first tariff", speed: 100, price: 1000},
+      { name: "My second tariff", speed: 2000, price: 2000},
+      { name: "My third tariff", speed: 9000, price: 3000}
+    ];
+
+  getTariffs = async () => {
+    return this._tariffs;
   };
 
   async getClient(id, jwt) {

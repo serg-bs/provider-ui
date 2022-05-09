@@ -62,12 +62,6 @@ export default class PersonDetails extends Component {
             <div>
                 <Menu/>
                 <MainPage {...data}/>
-
-                {/*<Tariffs></Tariffs>*/}
-
-
-
-
             </div>
         )
     }
