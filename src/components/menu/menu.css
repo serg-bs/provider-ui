@@ -1,36 +1,6 @@
- .list { /*общий параметр для всех блоков */
-    font-size: xx-large; 
-    position: absolute;
-    top: 120px;
-     left:15%
-    }
-.style {
-    position: absolute;
-    width: 200px;
-    border-radius: 10px;
-}
-    .block-1 { /*Главный */
-    position: absolute;
-    left: 50px;
-    }
-    .block-2 { /* Тарифы */
-    position: absolute;
-    left: 375px;
-    }
-    .block-3 { /* Платежи */
-    position: absolute;
-    left: 700px;
-    }
-    .block-4 { /* Инфо */
-    position: absolute;
-    left: 1000px;
-    }
-    .style:hover {
-        background-color: #8cfcfc;
-        opacity: .7;
-        border-color: navy;
-      }
 
- .Status {
-     background-color: red;
- }
+.list { /*общий параметр для всех блоков */
+    position: absolute;
+     z-index: 2;
+
+    }
