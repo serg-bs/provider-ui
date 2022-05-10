@@ -1,12 +1,13 @@
-import React, {useContext} from "react";
+import React from "react";
+import jwt from "jwt-decode";
 
 
 export default class SwapiService {
 
     _apiBase = 'http://localhost:8001/api';
 
-    getResourceByPost = async (url, payload, jwt) => {
-        const res = await this.postResource(url, payload, jwt);
+    getResourceByPost = async (url, payload, jwtToken) => {
+        const res = await this.postResource(url, payload, jwtToken);
         if (res.status == 403 ||
             res.status == 401) {
             throw new Error('Redirect to login')
@@ -17,14 +18,14 @@ export default class SwapiService {
         return await res.json();
     };
 
-    async postResource(url, payload, jwt) {
+    async postResource(url, payload, jwtToken) {
         const res = await fetch(`${this._apiBase}${url}`,
             {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': '*',
-                    'Authorization': `Bearer ${jwt}`
+                    'Authorization': `Bearer ${jwtToken}`
                 },
                 body: JSON.stringify(payload)
             });
@@ -45,15 +46,14 @@ export default class SwapiService {
         return res;
     }
 
-
-    getResourceByGet = async (url, jwt) => {
+    getResourceByGet = async (url, jwtToken) => {
         const res = await fetch(`${this._apiBase}${url}`,
             {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': '*',
-                    'Authorization': `Bearer ${jwt}`
+                    'Authorization': `Bearer ${jwtToken}`
                 }
             });
         if (res.status == 403 ||
@@ -74,35 +74,43 @@ export default class SwapiService {
         return await this.postResource(`/clients/`, payload, null);
     };
 
-    getClient = async (id, jwt) => {
-        const client = await this.getResourceByGet(`/clients/${id}`, jwt);
+    getClient = async (jwtToken) => {
+        const {clientId} = jwt(jwtToken);
+        const client = await this.getResourceByGet(`/clients/${clientId}`, jwtToken);
         return client;
     };
 
-    getTariffs = async (jwt) => {
-        const res = await this.getResourceByGet(`/tariffs/`, jwt);
+    getTariffs = async (jwtToken) => {
+        const res = await this.getResourceByGet(`/tariffs/`, jwtToken);
+        return res;
+    };
+
+    getAccount = async (jwtToken) => {
+        const {clientId} = jwt(jwtToken);
+        const res = await this.getResourceByGet(`/accounts/byClient`, jwtToken, {clientId} );
+        return res;
+    };
+
+    updateAccount = async (jwtToken, tarrifId) => {
+        console.log('ACCOUNT')
+        const {clientId} = jwt(jwtToken);
+        const payload =
+            {
+                "id": 1,
+                "tarrifId": tarrifId,
+                "clientId": clientId,
+                "address": null,
+                "status": null,
+                "balance": null,
+                "dateClose": null
+            }
+        const res = await this.getResourceByPost(`/accounts/`, payload, jwtToken);
         return res;
     };
 
     async findByLogin(login){
         return await this.postResource(`/clients/findByLogin/`, {"login": login});
     };
-
-    getAccounts = async (payload2) => {
-        const response = await fetch('http://localhost:8001/api/accounts/', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(payload2)
-        });
-
-        const data = await response.json();
-        // enter you logic when the fetch is successful
-        console.log(data);
-    }
-
 
     _extractId = (item) => {
         const idRegExp = /\/([0-9]*)\/$/;

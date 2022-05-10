@@ -14,10 +14,13 @@ const class1="btn btn-secondary"
                     <Link to="/tariff" ><button type="button" className={class1}> Тарифы</button></Link>
                 </il>
                 <il>
-                    <Link to="/" ><button type="button" className={class1}> Платежи</button></Link>
+                    <Link to="/account" ><button type="button" className={class1}> Оплата</button></Link>
                 </il>
                 <il>
-                    <Link to="/" ><button type="button" className={class1}> Инфо</button></Link>
+                    <Link to="/payments" ><button type="button" className={class1}> История Платежей</button></Link>
+                </il>
+                <il>
+                    <Link to="/client" ><button type="button" className={class1}> Инфо</button></Link>
                 </il>
             </ul>
         )

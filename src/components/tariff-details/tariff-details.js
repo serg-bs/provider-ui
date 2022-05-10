@@ -31,19 +31,38 @@ export default class TariffDetails extends Component {
     };
 
     componentDidMount() {
-        const { jwtToken, swapiService } = this.props;
-
+        const {jwtToken, swapiService} = this.props;
         // const user = jwt(jwtToken);
 
         swapiService.getTariffs(jwtToken)
             .then((data) => {
-                console.log('GGGGGGGGGG')
-                console.log(data)
                 this.setState({
                     data,
                     error: false
                 });
             }).catch(this.onError);
+    }
+
+    updateTariff = (tarrifId) => {
+        const {jwtToken, swapiService} = this.props;
+        // const user = jwt(jwtToken);
+
+        swapiService.getAccount(jwtToken)
+            .then((data) => {
+
+
+
+
+            }).catch(this.onError);
+
+        swapiService.updateAccount(jwtToken, tarrifId)
+            .then((data) => {
+                this.setState({
+                    // data,
+                    error: false
+                });
+            }).catch(this.onError);
+
     }
 
     render() {
@@ -62,7 +81,7 @@ export default class TariffDetails extends Component {
         return (
             <div>
                 <Menu/>
-                <Tariffs tariffData={data}></Tariffs>
+                <Tariffs tariffData={data} updateTariff={this.updateTariff}></Tariffs>
             </div>
         )
     }

@@ -16,9 +16,9 @@ export default class App extends Component {
 
     state = {
         isLoggedIn: false,
-        jwt: '',
+        jwt: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRJZCI6MiwidHlwZSI6ImNsaWVudCIsImlhdCI6MTY1MjEzMTg0NCwiZXhwIjo3MzY1MjEzMTg0NH0.VUWRqrU4iS8MSclPhpX8ahzF8ym1BXqT2JJaVkyizyc',
         //swapiService: new SwapiService()
-        swapiService: new DummySwapiService()
+         swapiService: new DummySwapiService()
     };
 
     onLogin = (payload) => {

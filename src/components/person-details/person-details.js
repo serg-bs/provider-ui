@@ -1,14 +1,11 @@
 import React, {Component} from 'react';
 
 import './person-details.css';
-import SwapiService from "../../services/swapi-service";
 import ErrorIndicator from "../error-indicator";
 import Spinner from "../spinner";
 import ErrorAuth from "../error-auth";
 import Menu from "../menu/menu";
 import MainPage from "../main-page/main-page";
-import Tariffs from "../tarrifs/tariffs";
-import jwt from 'jwt-decode'
 
 export default class PersonDetails extends Component {
 
@@ -31,11 +28,8 @@ export default class PersonDetails extends Component {
     };
 
     componentDidMount() {
-        const { jwtToken, swapiService } = this.props;
-
-        // const user = jwt(jwtToken);
-
-        swapiService.getClient(2, jwtToken)
+        const {jwtToken, swapiService} = this.props;
+        swapiService.getClient(jwtToken)
             .then((data) => {
                 this.setState({
                     data,
@@ -43,7 +37,6 @@ export default class PersonDetails extends Component {
                 });
             }).catch(this.onError);
     }
-
 
     render() {
         const {hasError, data, isLoggedIn} = this.state;
@@ -56,9 +49,7 @@ export default class PersonDetails extends Component {
         if (!data) {
             return <Spinner/>;
         }
-
         return (
-
             <div>
                 <Menu/>
                 <MainPage {...data}/>

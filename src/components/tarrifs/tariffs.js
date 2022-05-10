@@ -2,11 +2,11 @@ import React from "react";
 import "./list.css"
 import Tariffsitems from "./tariffsitems";
 const Tariffs = (props) => {
-    const {tariffData} = props;
+    const {tariffData, updateTariff} = props;
 
     const elements = tariffData.map((item) => {
         return (
-            <Tariffsitems {...item}/>
+            <Tariffsitems {...item} updateTariff={updateTariff}/>
         )
     })
     console.log(elements)
