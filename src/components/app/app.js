@@ -2,14 +2,13 @@ import React, {Component} from 'react';
 
 import './app.css';
 import LoginPage from "../pages/login-page";
-import SwapiService from '../../services/swapi-service'
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import PersonDetails from "../person-details";
 import ErrorBoundry from "../error-boundry";
-import RegisterPage from "../pages/register-page";
-import { SwapiServiceProvider } from '../swapi-service-context';
+import {SwapiServiceProvider} from '../swapi-service-context';
 import DummySwapiService from "../../services/dummy-swapi-service";
 import TariffDetails from "../tariff-details";
+import PaymentDetails from "../payment-details";
+import AccountDetails from "../account-details";
 
 export default class App extends Component {
 
@@ -43,7 +42,7 @@ export default class App extends Component {
                         <Switch>
                             <Route path="/"
                                    render={() => (
-                                       <PersonDetails jwtToken={jwt} swapiService={swapiService}/>
+                                       <AccountDetails jwtToken={jwt} swapiService={swapiService}/>
                                    )}
                                    exact/>
                             <Route path="/tariff"
@@ -51,9 +50,14 @@ export default class App extends Component {
                                        <TariffDetails jwtToken={jwt} swapiService={swapiService}/>
                                    )}
                                    exact/>
-                            <Route path="/register"
+                            <Route path="/account"
                                    render={() => (
-                                       <RegisterPage/>
+                                       <AccountDetails jwtToken={jwt} swapiService={swapiService}/>
+                                   )}
+                                   exact/>
+                            <Route path="/payments"
+                                   render={() => (
+                                       <PaymentDetails jwtToken={jwt} swapiService={swapiService}/>
                                    )}
                                    exact/>
                             <Route

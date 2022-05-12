@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 
-import './person-details.css';
+import './account-details.css';
 import ErrorIndicator from "../error-indicator";
 import Spinner from "../spinner";
 import ErrorAuth from "../error-auth";
 import Menu from "../menu/menu";
+import MainPage from "../main-page/main-page";
 import AccountPage from "../account-page/account-page";
 
-export default class PersonDetails extends Component {
+export default class AccountDetails extends Component {
 
     state = {
         data: null,
@@ -49,6 +50,8 @@ export default class PersonDetails extends Component {
         if (!data) {
             return <Spinner/>;
         }
+        console.log(data)
+        console.log('HHHHHH')
         return (
             <div>
                 <Menu/>

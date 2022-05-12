@@ -1,14 +1,16 @@
+import AccountPage from "../components/account-page";
+
 export default class DummySwapiService {
 
   _client = {
-    "id": 2,
-    "name": "Patrik",
-    "surename": "Collman",
-    "middlename": "Michailovich",
-    "address": "Baturina",
-    "login": "serg",
-    "phone": "+7910999999",
-    "email": "patric@yandex.ru"
+    id: 2,
+    name: "Patrik",
+    surename: "Collman",
+    middlename: "Michailovich",
+    address: "Baturina",
+    login: "serg",
+    phone: "+7910999999",
+    email: "patric@yandex.ru"
   }
 
   _tariffs = [
@@ -19,6 +21,25 @@ export default class DummySwapiService {
 
   getTariffs = async () => {
     return this._tariffs;
+  };
+  _payments = [
+    {
+      amount: 100000000,
+      payDateTime: "2022-05-11T09:21:03.368Z",
+    }
+    ];
+_account =
+    {
+  address: "Vladimirskay oblaststreet Baturina 37",
+  balance: 12121,
+  status: true
+}
+  getAccount = async (jwt) => {
+  return this._account;
+  }
+
+  getPayments = async (jwt) => {
+    return this._payments;
   };
 
   async getClient(id, jwt) {

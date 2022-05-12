@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
 
-import './person-details.css';
+import './payment-details.css';
 import ErrorIndicator from "../error-indicator";
 import Spinner from "../spinner";
 import ErrorAuth from "../error-auth";
 import Menu from "../menu/menu";
-import AccountPage from "../account-page/account-page";
+import MainPage from "../main-page/main-page";
+import History from "../pay-history/history";
+import Payments from "../pay-history/history";
 
-export default class PersonDetails extends Component {
+export default class PaymentDetails extends Component {
 
     state = {
         data: null,
@@ -29,7 +31,7 @@ export default class PersonDetails extends Component {
 
     componentDidMount() {
         const {jwtToken, swapiService} = this.props;
-        swapiService.getAccount(jwtToken)
+        swapiService.getPayments(jwtToken)
             .then((data) => {
                 this.setState({
                     data,
@@ -52,7 +54,7 @@ export default class PersonDetails extends Component {
         return (
             <div>
                 <Menu/>
-                <AccountPage {...data}/>
+                <Payments historyData={data}/>
             </div>
         )
     }
