@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './account-page.css'
 import {render} from "react-dom";
 
 const AccountPage = (accountData) => {
+    const [payAmount, setPayAmount] = useState('');
+
     console.log(accountData)
     console.log('HHHHHH')
     // let status;
@@ -31,8 +33,7 @@ const AccountPage = (accountData) => {
                         <span>{status}</span>
                     </li>
                     <li className="list-group-item">
-                        <span className="term"></span>
-                        <span></span>
+                        <input onChange={setPayAmount} placeholder="Кол.во дней" className="pay-position"></input>
                     </li>
                 </ul>
             </div>

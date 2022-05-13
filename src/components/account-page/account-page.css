@@ -2,3 +2,7 @@
   top: 100px;
   font-size: xx-large;
 }
+.pay-position {
+  top: 20px;
+  position: relative;
+}
