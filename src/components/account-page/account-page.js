@@ -19,21 +19,22 @@ const AccountPage = (accountData) => {
             <div className="card-body">
                 <ul className="list-group list-group-flush">
                     <li className="list-group-item">
-                        <span className="term">address:</span>
+                        <span className="term">Адресс:</span>
                         <span>{accountData.address}</span>
                     </li>
 
                     <li className="list-group-item">
-                        <span className="term">balance:</span>
+                        <span className="term">Баланс:</span>
                         <span>{accountData.balance}</span>
                     </li>
 
                     <li className="list-group-item">
-                        <span className="term">status:</span>
+                        <span className="term">Статус:</span>
                         <span>{status}</span>
                     </li>
                     <li className="list-group-item">
-                        <input onChange={setPayAmount} placeholder="Кол.во дней" className="pay-position"></input>
+                        <input onChange={setPayAmount} placeholder="Сумма" className="pay-position"></input>
+                        <button type="button" className="btn btn-success pay-button ">Оплатить :)</button>
                     </li>
                 </ul>
             </div>

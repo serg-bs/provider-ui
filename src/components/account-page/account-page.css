@@ -6,3 +6,8 @@
   top: 20px;
   position: relative;
 }
+.pay-button {
+  position: absolute;
+  top: 30px;
+  right: 80px;
+}
