@@ -33,8 +33,8 @@ const AccountPage = (accountData) => {
                         <span>{status}</span>
                     </li>
                     <li className="list-group-item">
-                        <input onChange={setPayAmount} placeholder="Сумма" className="pay-position"></input>
-                        <button type="button" className="btn btn-success pay-button ">Оплатить :)</button>
+                        <input onChange={setPayAmount} placeholder="Сумма" className="pay-position border"></input>
+                        <button type="button" className="btn btn-success pay-button">Оплатить :)</button>
                     </li>
                 </ul>
             </div>
