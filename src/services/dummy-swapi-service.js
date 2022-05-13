@@ -38,6 +38,10 @@ _account =
   return this._account;
   }
 
+  updateAccount = async (payment, jwt) => {
+      alert(payment.amount)
+  }
+
   getPayments = async (jwt) => {
     return this._payments;
   };

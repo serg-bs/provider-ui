@@ -1,9 +1,16 @@
 import React from 'react';
 import './account-page.css'
+import {render} from "react-dom";
 
 const AccountPage = (accountData) => {
     console.log(accountData)
     console.log('HHHHHH')
+    // let status;
+    // if (accountData.status===false){
+    //     status = "Offline";
+    // } else {
+    //     status = "online";
+    // }
     const status = accountData.status ? "Online":"Offline";
     return (
         <div className="person-details card top1">
@@ -22,6 +29,10 @@ const AccountPage = (accountData) => {
                     <li className="list-group-item">
                         <span className="term">status:</span>
                         <span>{status}</span>
+                    </li>
+                    <li className="list-group-item">
+                        <span className="term"></span>
+                        <span></span>
                     </li>
                 </ul>
             </div>
