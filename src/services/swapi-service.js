@@ -8,8 +8,8 @@ export default class SwapiService {
 
     getResourceByPost = async (url, payload, jwtToken) => {
         const res = await this.postResource(url, payload, jwtToken);
-        if (res.status == 403 ||
-            res.status == 401) {
+        if (res.status === 403 ||
+            res.status === 401) {
             throw new Error('Redirect to login')
         }
         if (!res.ok) {
@@ -84,11 +84,20 @@ export default class SwapiService {
         const res = await this.getResourceByGet(`/tariffs/`, jwtToken);
         return res;
     };
+    getPayments = async (accountId, jwtToken) => {
+        const res = await this.getResourceByGet(`/payments?accountId=${accountId}`, jwtToken);
+        return res;
+    };
 
     getAccount = async (jwtToken) => {
         const {clientId} = jwt(jwtToken);
-        const res = await this.getResourceByGet(`/accounts/byClient`, jwtToken, {clientId} );
+        const res = await this.getResourceByGet(`/accounts?clientId=${clientId}`, jwtToken );
         return res;
+    };
+
+    addPayment = async (payment, jwtToken) => {
+        console.log(payment)
+        return await this.getResourceByPost(`/payments/`, payment, jwtToken);
     };
 
     updateAccount = async (jwtToken, tarrifId) => {

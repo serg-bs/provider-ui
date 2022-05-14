@@ -5,7 +5,7 @@ import ErrorIndicator from "../error-indicator";
 import Spinner from "../spinner";
 import ErrorAuth from "../error-auth";
 import Menu from "../menu/menu";
-import AccountPage from "../account-page/account-page";
+import MainPage from "../main-page/main-page";
 
 export default class PersonDetails extends Component {
 
@@ -29,7 +29,7 @@ export default class PersonDetails extends Component {
 
     componentDidMount() {
         const {jwtToken, swapiService} = this.props;
-        swapiService.getAccount(jwtToken)
+        swapiService.getClient(jwtToken)
             .then((data) => {
                 this.setState({
                     data,
@@ -52,7 +52,7 @@ export default class PersonDetails extends Component {
         return (
             <div>
                 <Menu/>
-                <AccountPage {...data}/>
+                <MainPage {...data}/>
             </div>
         )
     }

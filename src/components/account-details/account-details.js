@@ -5,7 +5,6 @@ import ErrorIndicator from "../error-indicator";
 import Spinner from "../spinner";
 import ErrorAuth from "../error-auth";
 import Menu from "../menu/menu";
-import MainPage from "../main-page/main-page";
 import AccountPage from "../account-page/account-page";
 
 export default class AccountDetails extends Component {
@@ -28,7 +27,7 @@ export default class AccountDetails extends Component {
         }
     };
 
-    componentDidMount() {
+    update = () => {
         const {jwtToken, swapiService} = this.props;
         swapiService.getAccount(jwtToken)
             .then((data) => {
@@ -37,6 +36,20 @@ export default class AccountDetails extends Component {
                     error: false
                 });
             }).catch(this.onError);
+    }
+
+    componentDidMount() {
+        this.update();
+    }
+
+    addPayment = (amount) => {
+        const {jwtToken, swapiService} = this.props;
+        swapiService.addPayment( {
+            "accountId": this.state.data.id,
+            "amount": amount,
+            "payDateTime": Date.now()
+        }, jwtToken)
+
     }
 
     render() {
@@ -50,12 +63,10 @@ export default class AccountDetails extends Component {
         if (!data) {
             return <Spinner/>;
         }
-        console.log(data)
-        console.log('HHHHHH')
         return (
             <div>
                 <Menu/>
-                <AccountPage {...data}/>
+                <AccountPage {...data} addPayment={this.addPayment}/>
             </div>
         )
     }

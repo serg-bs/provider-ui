@@ -39,8 +39,13 @@ _account =
   }
 
   updateAccount = async (payment, jwt) => {
-      alert(payment.amount)
+      // alert(payment.amount)
   }
+
+  addPayment = async (payment, jwt) => {
+    console.log(payment)
+    alert(payment)
+  };
 
   getPayments = async (jwt) => {
     return this._payments;

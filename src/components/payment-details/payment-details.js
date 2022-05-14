@@ -5,8 +5,6 @@ import ErrorIndicator from "../error-indicator";
 import Spinner from "../spinner";
 import ErrorAuth from "../error-auth";
 import Menu from "../menu/menu";
-import MainPage from "../main-page/main-page";
-import History from "../pay-history/history";
 import Payments from "../pay-history/history";
 
 export default class PaymentDetails extends Component {
@@ -29,14 +27,22 @@ export default class PaymentDetails extends Component {
         }
     };
 
-    componentDidMount() {
+    getPayment = (accountId) => {
         const {jwtToken, swapiService} = this.props;
-        swapiService.getPayments(jwtToken)
+        swapiService.getPayments(accountId, jwtToken)
             .then((data) => {
                 this.setState({
                     data,
                     error: false
                 });
+            }).catch(this.onError);
+    }
+
+    componentDidMount() {
+        const {jwtToken, swapiService} = this.props;
+        swapiService.getAccount(jwtToken)
+            .then((data) => {
+                this.getPayment(data.id);
             }).catch(this.onError);
     }
 
