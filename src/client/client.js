@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import "./client.css"
+import Menu from "../components/menu/menu";
 
 const Client = () => {
     const [clientName,setclientName] = useState('');
-
     const [clientsurename,setclientsurename] = useState('');
     const [clientmiddlename, setclientmiddlename] = useState('');
     const [clientlogin,setclientlogin] = useState('');
@@ -11,6 +11,8 @@ const Client = () => {
     const [clientemail,setclientemail] = useState('');
 
     return (
+        <div>
+        <Menu/>
         <div className="person-details card top">
             <div className="card-body">
                 <form className="list-group">
@@ -27,8 +29,10 @@ const Client = () => {
                         <input className="term style-phone" placeholder="Телефон" value={clientphone} onChange={p => setclientphone(p.target.value)}></input>
                     <p className="p">Почта</p>
                         <input className="term style-email" placeholder="Почта" value={clientemail} onChange={e => setclientemail(e.target.value)}></input>
+                    <button type="button" className="btn btn-success save-position">Cохранить</button>
                 </form>
             </div>
+        </div>
         </div>
     );
 };
