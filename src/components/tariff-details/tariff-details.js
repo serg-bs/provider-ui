@@ -1,14 +1,11 @@
 import React, {Component} from 'react';
 
 import './tariff-details.css';
-import SwapiService from "../../services/swapi-service";
 import ErrorIndicator from "../error-indicator";
 import Spinner from "../spinner";
 import ErrorAuth from "../error-auth";
 import Menu from "../menu/menu";
-import MainPage from "../main-page/main-page";
 import Tariffs from "../tarrifs/tariffs";
-import jwt from 'jwt-decode'
 
 export default class TariffDetails extends Component {
 

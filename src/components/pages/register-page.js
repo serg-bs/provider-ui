@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Link, Redirect, withRouter} from 'react-router-dom';
 import SwapiService from "../../services/swapi-service";
 
-const RegisterPage = ({history}) => {
+const Register = ({info}) => {
 
     const [errorMessages, setErrorMessages] = useState('');
     const [loginError, setLoginError] = useState('');
@@ -25,7 +25,7 @@ const RegisterPage = ({history}) => {
             if (!res.ok) {
                 return res.json();
             } else {
-                history.push(`/login`);
+                info.push(`/login`);
             }
         }).then(data => {
             if (data) {
@@ -61,7 +61,7 @@ const RegisterPage = ({history}) => {
 
     return (
         <div className="jumbotron">
-            <p>Регистрация пользователя</p>
+            <p>Информация</p>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     {renderErrorMessage()}
@@ -135,5 +135,5 @@ const RegisterPage = ({history}) => {
     );
 }
 
-export default withRouter(RegisterPage);
+export default withRouter(Register);
 
