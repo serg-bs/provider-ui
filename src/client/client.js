@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import "./client.css"
 
 const Client = () => {
     const [clientName,setclientName] = useState('');
@@ -12,14 +13,20 @@ const Client = () => {
     return (
         <div className="person-details card top">
             <div className="card-body">
-                <form className="list-group list-group-flush">
-                        <span className="term">Данные пользователя</span>
-                        <input className="term" placeholder="Name" value={clientName} onChange={n => setclientName(n.target.value)}></input>
-                        <input className="term" placeholder="Surename" value={clientsurename} onChange={s => setclientsurename(s.target.value)}></input>
-                        <input className="term" placeholder="middlename" value={clientmiddlename} onChange={m => setclientmiddlename(m.target.value)}></input>
-                        <input className="term" placeholder="login" value={clientlogin} onChange={l => setclientlogin(l.target.value)}></input>
-                        <input className="term" placeholder="phone" value={clientphone} onChange={p => setclientphone(p.target.value)}></input>
-                        <input className="term" placeholder="email" value={clientemail} onChange={e => setclientemail(e.target.value)}></input>
+                <form className="list-group">
+                        <center className="term text-client-info">Данные пользователя</center>
+                    <p className="p">Имя</p>
+                        <input className="term style-name" placeholder="Имя" value={clientName} onChange={n => setclientName(n.target.value)}></input>
+                    <p className="p">Фамилия</p>
+                        <input className="term style-surename" placeholder="Фамилия" value={clientsurename} onChange={s => setclientsurename(s.target.value)}></input>
+                    <p className="p">Отчество</p>
+                        <input className="term style-middlename" placeholder="Отчество" value={clientmiddlename} onChange={m => setclientmiddlename(m.target.value)}></input>
+                    <p className="p">Логин</p>
+                        <input className="term style-login" placeholder="Логин" value={clientlogin} onChange={l => setclientlogin(l.target.value)}></input>
+                    <p className="p">Телефон</p>
+                        <input className="term style-phone" placeholder="Телефон" value={clientphone} onChange={p => setclientphone(p.target.value)}></input>
+                    <p className="p">Почта</p>
+                        <input className="term style-email" placeholder="Почта" value={clientemail} onChange={e => setclientemail(e.target.value)}></input>
                 </form>
             </div>
         </div>
