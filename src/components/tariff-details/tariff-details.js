@@ -1,19 +1,17 @@
 import React, {Component} from 'react';
 
 import './tariff-details.css';
-import SwapiService from "../../services/swapi-service";
 import ErrorIndicator from "../error-indicator";
 import Spinner from "../spinner";
 import ErrorAuth from "../error-auth";
 import Menu from "../menu/menu";
-import MainPage from "../main-page/main-page";
 import Tariffs from "../tarrifs/tariffs";
-import jwt from 'jwt-decode'
 
 export default class TariffDetails extends Component {
 
     state = {
         data: null,
+        account: {},
         hasError: false,
         isLoggedIn: true
     };
@@ -30,10 +28,8 @@ export default class TariffDetails extends Component {
         }
     };
 
-    componentDidMount() {
+    getTariff = () => {
         const {jwtToken, swapiService} = this.props;
-        // const user = jwt(jwtToken);
-
         swapiService.getTariffs(jwtToken)
             .then((data) => {
                 this.setState({
@@ -43,31 +39,44 @@ export default class TariffDetails extends Component {
             }).catch(this.onError);
     }
 
-    updateTariff = (tarrifId) => {
+    componentDidMount() {
+        this.getTariff()
+        this.getAccount()
+    }
+
+    updateAccount = (account) => {
         const {jwtToken, swapiService} = this.props;
-        // const user = jwt(jwtToken);
-
-        swapiService.getAccount(jwtToken)
-            .then((data) => {
-
-
-
-
-            }).catch(this.onError);
-
-        swapiService.updateAccount(jwtToken, tarrifId)
+        swapiService.updateAccount(jwtToken, account)
             .then((data) => {
                 this.setState({
-                    // data,
                     error: false
                 });
+                this.getTariff()
             }).catch(this.onError);
+    }
 
+    getAccount = () => {
+        const {jwtToken, swapiService} = this.props;
+        swapiService.getAccount(jwtToken)
+            .then((data) => {
+                this.setState({
+                    account: {...data}
+                })
+                return this.getTariff()
+            }).catch(this.onError);
+    }
+
+    updateTariff = (tariffId) => {
+        var account = {...this.state.account}
+        account.tariffId = tariffId
+        this.updateAccount(account)
+        this.setState({
+            account: {...account}
+        })
     }
 
     render() {
         const {hasError, data, isLoggedIn} = this.state;
-        console.log(data)
         if (!isLoggedIn) {
             return <ErrorAuth/>
         }
@@ -77,11 +86,11 @@ export default class TariffDetails extends Component {
         if (!data) {
             return <Spinner/>;
         }
-
         return (
             <div>
                 <Menu/>
-                <Tariffs tariffData={data} updateTariff={this.updateTariff}></Tariffs>
+                <Tariffs tariffData={data} updateTariff={this.updateTariff}
+                         current={this.state.account.tariffId}></Tariffs>
             </div>
         )
     }

@@ -1,17 +1,16 @@
 import React, {Component} from 'react';
 
-import './app.css';
 import LoginPage from "../pages/login-page";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import ErrorBoundry from "../error-boundry";
 import {SwapiServiceProvider} from '../swapi-service-context';
-import DummySwapiService from "../../services/dummy-swapi-service";
 import TariffDetails from "../tariff-details";
 import PaymentDetails from "../payment-details";
 import AccountDetails from "../account-details";
 import RegisterPage from "../pages/register-page";
 import PersonDetails from "../person-details";
 import SwapiService from "../../services/swapi-service";
+
 
 export default class App extends Component {
 
@@ -20,7 +19,7 @@ export default class App extends Component {
         isLoggedIn: false,
         jwt: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRJZCI6MiwidHlwZSI6ImNsaWVudCIsImlhdCI6MTY1MjEzMTg0NCwiZXhwIjo3MzY1MjEzMTg0NH0.VUWRqrU4iS8MSclPhpX8ahzF8ym1BXqT2JJaVkyizyc',
         swapiService: new SwapiService()
-         // swapiService: new DummySwapiService()
+        // swapiService: new DummySwapiService()
     };
 
     onLogin = (payload) => {
@@ -58,6 +57,11 @@ export default class App extends Component {
                                        <RegisterPage/>
                                    )}
                                    exact/>
+                            {/*<Route path="/ex"*/}
+                            {/*       render={() => (*/}
+                            {/*           <Example/>*/}
+                            {/*       )}*/}
+                            {/*       exact/>*/}
                             <Route path="/account"
                                    render={() => (
                                        <AccountDetails jwtToken={jwt} swapiService={swapiService}/>

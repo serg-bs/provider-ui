@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Link, Redirect, withRouter} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import SwapiService from "../../services/swapi-service";
 
 const RegisterPage = ({history}) => {
@@ -7,33 +7,22 @@ const RegisterPage = ({history}) => {
     const [errorMessages, setErrorMessages] = useState('');
     const [loginError, setLoginError] = useState('');
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        if (loginError !== '') {
-            return;
-        }
-
-        var {name, lastname, login, password} = document.forms[0];
-        let res = new SwapiService().register(
-            {
-                name: name.value,
-                lastname: lastname.value,
-                login: login.value,
-                password: password.value
+    const createAccount = (clientId) => {
+        var {address} = document.forms[0];
+        new SwapiService().createAccount({
+                address: address.value,
+                status: 'blocked',
+                balance: 0,
+                clientId: clientId,
+                tariffId: 1
             }
-        ).then((res) => {
-            if (!res.ok) {
+        )
+            .then(res => {
                 return res.json();
-            } else {
-                history.push(`/login`);
-            }
-        }).then(data => {
-            if (data) {
-                console.log(data)
-                setErrorMessages(data.message)
-            }
-        });
-    }
+            }).then(data => {
+            history.push(`/login`);
+        })
+    };
 
     const checkLogin = () => {
         var {login} = document.forms[0];
@@ -48,6 +37,34 @@ const RegisterPage = ({history}) => {
             }
         })
     };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        if (loginError !== '') {
+            return;
+        }
+
+        var {name, surename, login, password} = document.forms[0];
+        new SwapiService().register(
+            {
+                name: name.value,
+                surename: surename.value,
+                login: login.value,
+                password: password.value
+            }
+        ).then((res) => {
+            return res.json();
+        }).then(data => {
+            if (data.message) {
+                console.log(data)
+                setErrorMessages(data.message)
+            } else {
+                console.log(data)
+                alert(data.id)
+                return createAccount(data.id)
+            }
+        });
+    }
 
     const renderErrorMessage = () => (
         errorMessages !== "" && (
@@ -72,8 +89,8 @@ const RegisterPage = ({history}) => {
                            className="form-control"
                            placeholder="Введите имя"></input>
                     <label htmlFor="name" className="form-label mt-4">Фамилия</label>
-                    <input id="lastname"
-                           name="lastname"
+                    <input id="surename"
+                           name="surename"
                            value="Kollmann"
                            className="form-control"
                            placeholder="Введите логин"></input>
