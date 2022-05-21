@@ -42,7 +42,6 @@ const MainPage = (clientData) => {
                     </ul>
                 </div>
             </div>
-
     );
 };
 export default MainPage

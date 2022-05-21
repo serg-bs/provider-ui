@@ -9,7 +9,6 @@ export default class Menu extends Component {
             <div className="list btn-group list" role="group" aria-label="Basic example">
                 <Link className={class1} to="/">Главная</Link>
                 <Link className={class1} to="/tariff">Тарифы</Link>
-                <Link className={class1} to="/account">Оплата</Link>
                 <Link className={class1} to="/payments">Платежи</Link>
                 <Link className={class1} to="/client">Инфо</Link>
 

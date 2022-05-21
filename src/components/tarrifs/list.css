@@ -1,4 +1,4 @@
-.position {
+.color-element {
     color: white;
 }
 .list-head {
@@ -7,4 +7,11 @@
 .top {
     position: relative;
     top: 100px;
+}
+.buttons-size {
+    position: relative;
+
+}
+.border-block {
+    border-radius: 5px;
 }

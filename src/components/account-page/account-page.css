@@ -5,12 +5,14 @@
 .pay-position {
   top: 20px;
   position: relative;
+  width: 100%;
 }
 .pay-button {
   position: relative;
-  top: 15px;
+  top: 30px;
   left: 0px;
+  width: 100%;
 }
 .border {
-  border-radius: 10px;
+  border-radius: 3px;
 }

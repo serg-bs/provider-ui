@@ -12,9 +12,9 @@ export default class DummySwapiService {
     }
 
     _tariffs = [
-        {name: "My first tariff", speed: 100, price: 1000},
-        {name: "My second tariff", speed: 2000, price: 2000},
-        {name: "My third tariff", speed: 9000, price: 3000}
+        {name: "My first tariff", speed: 100, price: 1000, enabled: true},
+        {name: "My second tariff", speed: 2000, price: 2000, enabled: false},
+        {name: "My third tariff", speed: 9000, price: 3000, enabled: true}
     ];
 
     getTariffs = async () => {

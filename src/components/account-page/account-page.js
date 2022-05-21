@@ -35,8 +35,7 @@ const AccountPage = (props) => {
                         </li>
                     </ul>
                     <div>
-                        <input value={payAmount} onChange={e => setPayAmount(e.target.value)} placeholder="Сумма"
-                               className="pay-position border"></input>
+                        <input className="pay-position border" value={payAmount} onChange={e => setPayAmount(e.target.value)} placeholder="Сумма"></input>
                         <button type="button" className="btn btn-success pay-button" onClick={addPayment}>Оплатить :)</button>
                     </div>
                 </div>

@@ -1,27 +1,28 @@
 import React from "react";
 
 const Tariffsitems = (props) => {
-    const {id, name, speed, price, updateTariff, connected} = props;
+    const {id, name, speed, price, updateTariff, enabled} = props;
 
-    const className = connected ? 'table-success' : ''
 
     const returnButton = () => {
-        console.log(`connected=${connected}`)
-        if (!connected) {
-            return (<button className="btn btn-primary" onClick={() => updateTariff(id)}>connect</button>)
+        if (enabled) {
+            return (
+                <button  className="border-block btn-danger btn-xs" onClick={() => updateTariff(id)}>Block</button>
+            )
         } else {
-            return ('')
+            return (
+                <button className="border-block btn-secondary btn-xs" onClick={() => updateTariff(id)}>unblock</button>
+            )
         }
     }
+
     return (
-        <tr className={className}>
+        <tr>
             <th scope="row"></th>
             <td>{name}</td>
             <td>{speed}</td>
             <td>{price}</td>
-            <td>
-                {returnButton()}
-            </td>
+            <td>{returnButton()}</td>
         </tr>
     );
 };
