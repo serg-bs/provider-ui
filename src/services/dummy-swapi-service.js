@@ -57,7 +57,6 @@ export default class DummySwapiService {
 
     addPayment = async (payment, jwt) => {
         console.log(payment)
-        alert(payment)
     };
 
     getPayments = async (jwt) => {

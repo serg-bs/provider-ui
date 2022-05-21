@@ -19,7 +19,7 @@ const AccountPage = (props) => {
                         </li>
                         <li className={class2}>
                             <span><b>Тариф: </b></span>
-                            <span>{props.tariffname}</span>
+                            <span>{props.tariffName}</span>
                         </li>
                         <li className={class2}>
                             <span><b>Баланс: </b></span>

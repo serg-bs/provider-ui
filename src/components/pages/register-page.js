@@ -44,13 +44,18 @@ const RegisterPage = ({history}) => {
             return;
         }
 
-        var {name, surename, login, password} = document.forms[0];
+        var {name, surename, middlename, address, login, password, phone, email} = document.forms[0];
         new SwapiService().register(
             {
                 name: name.value,
                 surename: surename.value,
+                middlename: middlename.value,
+                address: address.value,
                 login: login.value,
-                password: password.value
+                password: password.value,
+                phone: phone.value,
+                email: email.value,
+                type: 'client'
             }
         ).then((res) => {
             return res.json();
@@ -60,7 +65,6 @@ const RegisterPage = ({history}) => {
                 setErrorMessages(data.message)
             } else {
                 console.log(data)
-                alert(data.id)
                 return createAccount(data.id)
             }
         });
@@ -113,8 +117,8 @@ const RegisterPage = ({history}) => {
                            className="form-control"
                            placeholder="Введите почту"></input>
                     <label htmlFor="name" className="form-label mt-4">Телефон</label>
-                    <input id="telephone"
-                           name="telephone"
+                    <input id="phone"
+                           name="phone"
                         // value="serg"
                            className="form-control"
                            placeholder="Введите телефон"></input>

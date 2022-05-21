@@ -4,7 +4,6 @@ import './person-details.css';
 import ErrorIndicator from "../error-indicator";
 import Spinner from "../spinner";
 import ErrorAuth from "../error-auth";
-import Menu from "../menu/menu";
 import MainPage from "../main-page/main-page";
 
 export default class PersonDetails extends Component {

@@ -116,6 +116,9 @@ export default class SwapiService {
         const res = await this.getResourceByGet(`/tariffs/`, jwtToken);
         return res;
     };
+    getTariff = async (tariffId, jwtToken) => {
+        return await this.getResourceByGet(`/tariffs/${tariffId}`, jwtToken);
+    };
     getPayments = async (accountId, jwtToken) => {
         const res = await this.getResourceByGet(`/payments?accountId=${accountId}`, jwtToken);
         return res;
