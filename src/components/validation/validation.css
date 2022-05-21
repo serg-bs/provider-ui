@@ -13,3 +13,7 @@
 .error-indicator .boom {
   font-size: 1.7rem;
 }
+.error-message-text {
+  position: relative;
+  top: 60px;
+}

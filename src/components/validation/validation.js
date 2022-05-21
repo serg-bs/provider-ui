@@ -1,13 +1,15 @@
 import React from 'react';
+import icon from "./red-x.jpg"
 
 import './validation.css';
 
 const Validation = (props) => {
   return (
     <div className="error-indicator">
-      <span className="boom">
-        {props.message}
-      </span>
+      <div className="boom ">
+       <span className="error-message-text"> {props.message} </span>
+      </div>
+        <div className="optical-background"></div>
     </div>
   );
 };

@@ -43,7 +43,7 @@ export default class DummySwapiService {
 
     returnError = async () => {
         return {
-            message: "\nPassword не может быть пустым"
+            message: "\nSystem error!"
         };
     }
 
