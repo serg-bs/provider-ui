@@ -10,8 +10,8 @@ import AccountDetails from "../account-details";
 import RegisterPage from "../pages/register-page";
 import PersonDetails from "../person-details";
 import SwapiService from "../../services/swapi-service";
-import Client from "../../client/client";
 import Menu from "../menu/menu";
+import ClientDetails from "../client/client-details";
 
 
 export default class App extends Component {
@@ -88,9 +88,7 @@ export default class App extends Component {
                             <Route
                                 path="/client"
                                 render={() => (
-                                    <Client isLoggedIn={isLoggedIn}
-                                               onLogin={this.onLogin}
-                                               swapiService={swapiService}/>
+                                    <ClientDetails jwtToken={jwt} swapiService={swapiService}/>
                                 )}/>
                         </Switch>
                     </div>
