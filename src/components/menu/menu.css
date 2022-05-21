@@ -1,6 +1,8 @@
 
 .list { /*общий параметр для всех блоков */
     position: absolute;
-     z-index: 2;
-
-    }
+    z-index: 2;
+    top: 20px;
+    margin-left: 60px;
+    margin-right: 60px;
+}

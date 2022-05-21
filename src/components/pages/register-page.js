@@ -1,28 +1,39 @@
 import React, {useState} from 'react';
-import {withRouter} from 'react-router-dom';
+import {Link, Redirect, withRouter} from 'react-router-dom';
 import SwapiService from "../../services/swapi-service";
 
-const RegisterPage = ({history}) => {
+const Register = ({info}) => {
 
     const [errorMessages, setErrorMessages] = useState('');
     const [loginError, setLoginError] = useState('');
 
-    const createAccount = (clientId) => {
-        var {address} = document.forms[0];
-        new SwapiService().createAccount({
-                address: address.value,
-                status: 'blocked',
-                balance: 0,
-                clientId: clientId,
-                tariffId: 1
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        if (loginError !== '') {
+            return;
+        }
+
+        var {name, lastname, login, password} = document.forms[0];
+        let res = new SwapiService().register(
+            {
+                name: name.value,
+                lastname: lastname.value,
+                login: login.value,
+                password: password.value
             }
-        )
-            .then(res => {
+        ).then((res) => {
+            if (!res.ok) {
                 return res.json();
-            }).then(data => {
-            history.push(`/login`);
-        })
-    };
+            } else {
+                info.push(`/login`);
+            }
+        }).then(data => {
+            if (data) {
+                console.log(data)
+                setErrorMessages(data.message)
+            }
+        });
+    }
 
     const checkLogin = () => {
         var {login} = document.forms[0];
@@ -38,34 +49,6 @@ const RegisterPage = ({history}) => {
         })
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        if (loginError !== '') {
-            return;
-        }
-
-        var {name, surename, login, password} = document.forms[0];
-        new SwapiService().register(
-            {
-                name: name.value,
-                surename: surename.value,
-                login: login.value,
-                password: password.value
-            }
-        ).then((res) => {
-            return res.json();
-        }).then(data => {
-            if (data.message) {
-                console.log(data)
-                setErrorMessages(data.message)
-            } else {
-                console.log(data)
-                alert(data.id)
-                return createAccount(data.id)
-            }
-        });
-    }
-
     const renderErrorMessage = () => (
         errorMessages !== "" && (
             <div className="error">{errorMessages}</div>)
@@ -78,7 +61,7 @@ const RegisterPage = ({history}) => {
 
     return (
         <div className="jumbotron">
-            <p>Регистрация пользователя</p>
+            <p>Информация</p>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     {renderErrorMessage()}
@@ -89,8 +72,8 @@ const RegisterPage = ({history}) => {
                            className="form-control"
                            placeholder="Введите имя"></input>
                     <label htmlFor="name" className="form-label mt-4">Фамилия</label>
-                    <input id="surename"
-                           name="surename"
+                    <input id="lastname"
+                           name="lastname"
                            value="Kollmann"
                            className="form-control"
                            placeholder="Введите логин"></input>
@@ -152,5 +135,5 @@ const RegisterPage = ({history}) => {
     );
 }
 
-export default withRouter(RegisterPage);
+export default withRouter(Register);
 

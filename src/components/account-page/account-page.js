@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import './account-page.css'
+import jwt from "jwt-decode";
 
 const AccountPage = (props) => {
     const [payAmount, setPayAmount] = useState('');
@@ -12,7 +13,7 @@ const AccountPage = (props) => {
     // }
 
     const hi = () => {
-        props.addPayment(payAmount)
+        props.addPayment(jwt())
     }
     const status = props.status ? "Online":"Offline";
     return (

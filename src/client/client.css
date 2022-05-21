@@ -1,0 +1,14 @@
+.text-client-info {
+position: center;
+    font-size: 30px;
+}
+.style-name {
+    position: relative;
+}
+.p {
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+.save-position {
+    margin-top: 20px;
+}
