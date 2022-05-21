@@ -16,6 +16,9 @@ export default class AccountDetails extends Component {
     };
 
     onError = (error) => {
+        console.log('TTTTTTTTTTTTT')
+        console.log(error)
+        console.log('TTTTTTTTTTTTT')
         if (error && error.message === 'Redirect to login') {
             this.setState({
                 isLoggedIn: false
@@ -31,6 +34,9 @@ export default class AccountDetails extends Component {
         const {jwtToken, swapiService} = this.props;
         swapiService.getAccount(jwtToken)
             .then((data) => {
+                console.log('TTTTTTTTTTTTT')
+                console.log(data)
+                console.log('TTTTTTTTTTTTT')
                 this.setState({
                     data,
                     error: false
@@ -64,10 +70,7 @@ export default class AccountDetails extends Component {
             return <Spinner/>;
         }
         return (
-            <div>
-                <Menu/>
-                <AccountPage {...data} addPayment={this.addPayment}/>
-            </div>
+           <AccountPage {...data} addPayment={this.addPayment}/>
         )
     }
 }

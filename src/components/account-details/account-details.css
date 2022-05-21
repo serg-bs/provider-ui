@@ -1,3 +1,4 @@
+
 .person-details {
   display: flex;
   margin-top: 1rem;
@@ -17,4 +18,21 @@
 
 .person-details .list-group-item .term{
   margin-right: .5rem;
+}
+.card-position {
+  top: 120px;
+  font-size: large;
+}
+.main-block-right {
+  position: relative;
+}
+.pay-button-position {
+  position: relative;
+  left: 30px;
+  margin-top: 30px;
+}
+.payOn {
+  position: relative;
+  top: 20px;
+  width: 300px;
 }
