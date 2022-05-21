@@ -36,7 +36,7 @@ const MainPage = (clientData) => {
                             <span>{clientData.phone}</span>
                         </li>
                         <li className={class2}>
-                            <span className="term"><b>Почта: </b></span>
+                            <span className="term"><b>Почт=: </b></span>
                             <span>{clientData.email}</span>
                         </li>
                     </ul>

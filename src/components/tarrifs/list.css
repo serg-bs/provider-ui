@@ -8,10 +8,7 @@
     position: relative;
     top: 100px;
 }
-.buttons-size {
-    position: relative;
-
-}
 .border-block {
+    position: relative;
     border-radius: 5px;
 }
