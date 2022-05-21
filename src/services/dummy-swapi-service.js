@@ -50,6 +50,7 @@ export default class DummySwapiService {
     updateClient = async (payment, jwt) => {
         return {
             ok: false,
+            status: 400,
             json: this.returnError
         }
     }
