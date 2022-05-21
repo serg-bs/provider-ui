@@ -1,5 +1,3 @@
-import AccountPage from "../components/account-page";
-
 export default class DummySwapiService {
 
     _client = {
@@ -40,7 +38,20 @@ export default class DummySwapiService {
     }
 
     updateAccount = async (payment, jwt) => {
-        // alert(payment.amount)
+        return this._payments;
+    }
+
+    returnError = async () => {
+        return {
+            message: "\nPassword не может быть пустым"
+        };
+    }
+
+    updateClient = async (payment, jwt) => {
+        return {
+            ok: false,
+            json: this.returnError
+        }
     }
 
     addPayment = async (payment, jwt) => {
