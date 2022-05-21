@@ -1,6 +1,10 @@
-# Getting Started with Create React App
+# Provider React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Docker build
+
+docker build -t ui .
 
 ## Available Scripts
 

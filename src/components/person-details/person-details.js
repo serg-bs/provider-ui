@@ -50,10 +50,7 @@ export default class PersonDetails extends Component {
             return <Spinner/>;
         }
         return (
-            <div>
-                <Menu/>
-                <MainPage {...data}/>
-            </div>
-        )
+            <MainPage {...data}/>
+         )
     }
 }

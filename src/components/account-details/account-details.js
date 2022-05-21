@@ -70,10 +70,7 @@ export default class AccountDetails extends Component {
             return <Spinner/>;
         }
         return (
-            <div>
-                <Menu/>
-                <AccountPage {...data} addPayment={this.addPayment}/>
-            </div>
+           <AccountPage {...data} addPayment={this.addPayment}/>
         )
     }
 }
