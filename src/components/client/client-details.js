@@ -33,7 +33,7 @@ export default class ClientDetails extends Component {
             .then((data) => {
                 this.setState({
                     data,
-                    error: false
+                    hasError: false
                 });
             }).catch(this.onError);
     }
@@ -59,14 +59,23 @@ export default class ClientDetails extends Component {
                 this.setState({
                     validation : ''
                 })
-                if (!res.ok) {
+                if (!res.ok && res.status === 400) {
                     return this.showValidationError(res.json())
                 }
-                console.log(res)
+
+                if (!res.ok ) {
+                    this.setState({
+                        hasError: true
+                    });
+                    return
+                }
+
                 this.setState({
-                    error: false
+                    hasError: false
                 });
-            }).catch(this.onError);
+            }).catch( (err ) => {
+            console.log(err)
+        });
 
     }
 

@@ -5,8 +5,6 @@ import Menu from "../menu/menu";
 
 const Client = (props) => {
 
-
-
     const [name,setName] = useState(props.name);
     const [surename,setSurename] = useState(props.surename);
     const [middlename, setMiddlename] = useState(props.middlename);

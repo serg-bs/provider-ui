@@ -103,7 +103,7 @@ export default class SwapiService {
     updateClient = async (payload, jwtToken) => {
         const {clientId} = jwt(jwtToken);
         payload.id = clientId;
-        return await this.postResourceNoAuth(`/clients/`, payload);
+        return await this.putResource(`/clients/${clientId}`, payload, jwtToken);
     };
 
     getClient = async (jwtToken) => {
