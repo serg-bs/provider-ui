@@ -21,7 +21,7 @@ export default class App extends Component {
 
 
     state = {
-        isLoggedIn: Object.keys(localStorage.getItem('token')).length !== 0 ,
+        isLoggedIn: localStorage.getItem('token') ? true : false,
         //client
          jwtToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRJZCI6MiwidHlwZSI6ImNsaWVudCIsImlhdCI6MTY1MjEzMTg0NCwiZXhwIjo3MzY1MjEzMTg0NH0.VUWRqrU4iS8MSclPhpX8ahzF8ym1BXqT2JJaVkyizyc',
         //admin token
