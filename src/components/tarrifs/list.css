@@ -1,17 +1,6 @@
-.color-element {
+.position {
     color: white;
 }
 .list-head {
     background-color: #565656;
-}
-.top {
-    position: relative;
-    top: 100px;
-}
-.buttons-size {
-    position: relative;
-
-}
-.border-block {
-    border-radius: 5px;
 }
