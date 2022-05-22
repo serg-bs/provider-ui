@@ -60,7 +60,6 @@ export default class PaymentDetails extends Component {
         }
         return (
             <div>
-                <Menu jwtToken={jwtToken}/>
                 <Payments historyData={data}/>
             </div>
         )

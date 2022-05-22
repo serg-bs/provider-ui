@@ -78,7 +78,6 @@ export default class TariffEdit extends Component {
 
     render() {
         const {hasError, data, isLoggedIn} = this.state;
-        const {jwtToken} = this.props;
         if (!isLoggedIn) {
             return <ErrorAuth/>
         }
@@ -90,7 +89,6 @@ export default class TariffEdit extends Component {
         }
         return (
             <div>
-                <Menu jwtToken={jwtToken}/>
                 <TariffsList tariffData={data} updateTariff={this.updateTariff}
                          current={this.state.account.tariffId}></TariffsList>
             </div>

@@ -89,7 +89,6 @@ export default class TariffDetails extends Component {
         }
         return (
             <div>
-                <Menu jwtToken={jwtToken}/>
                 <Tariffs tariffData={data} updateTariff={this.updateTariff}
                          current={this.state.account.tariffId}></Tariffs>
             </div>

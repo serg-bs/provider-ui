@@ -21,7 +21,6 @@ const Client = (props) => {
 
     }
     return (<div>
-            <Menu jwtToken={jwtToken}/>
             <div className="person-details card top">
                 <div className="card-body">
                     <form className="list-group">

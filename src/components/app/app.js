@@ -49,11 +49,11 @@ export default class App extends Component {
             <ErrorBoundry>
                 <Router>
                     <div>
+                        <Menu jwtToken={jwtToken}/>
                         <Switch>
                             <Route path="/"
                                    render={() => (
                                        <div className="row mb2">
-                                           <Menu jwtToken={jwtToken}/>
                                            <PersonDetails jwtToken={jwtToken} swapiService={swapiService}/>
                                            {accountDetail}
                                        </div>
