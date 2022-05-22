@@ -13,7 +13,7 @@ export default class AccountDetails extends Component {
         data: null,
         tariffName: '',
         hasError: false,
-        isLoggedIn: true
+        isLoggedIn: this.props.isLoggedIn
     };
 
     onError = (error) => {

@@ -21,7 +21,7 @@ export default class App extends Component {
 
 
     state = {
-        isLoggedIn: false,
+        isLoggedIn: Object.keys(localStorage.getItem('token')).length !== 0 ,
         //client
          jwtToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRJZCI6MiwidHlwZSI6ImNsaWVudCIsImlhdCI6MTY1MjEzMTg0NCwiZXhwIjo3MzY1MjEzMTg0NH0.VUWRqrU4iS8MSclPhpX8ahzF8ym1BXqT2JJaVkyizyc',
         //admin token
@@ -33,6 +33,7 @@ export default class App extends Component {
     onLogin = (payload) => {
         let promise = this.state.swapiService.login(payload);
         return promise.then((data) => {
+            localStorage.setItem('token', data.access_token);
             this.setState({
                 isLoggedIn: true,
                 jwtToken: data.access_token
@@ -40,48 +41,58 @@ export default class App extends Component {
         })
     };
 
+    onLogout = () => {
+        console.log('sdfsdfsdfsdf')
+        localStorage.setItem('token', null);
+            this.setState({
+                isLoggedIn: false,
+                jwtToken: false
+        })
+    };
+
     render() {
         const {isLoggedIn, jwtToken, swapiService} = this.state;
-        const {type} = jwt(jwtToken);
-        const accountDetail = type === 'client' ? <AccountDetails jwtTokenToken={jwtToken} swapiService={swapiService}/> : ''
+        const {type} = isLoggedIn ? jwt(jwtToken) : '';
+        const accountDetail = type === 'client' ? <AccountDetails jwtTokenToken={jwtToken} isLoggedIn={isLoggedIn} swapiService={swapiService}/> : ''
+        const menu = isLoggedIn ? <Menu jwtToken={jwtToken} onLogout={this.onLogout}/> : ''
         return (
             <SwapiServiceProvider value={this.state.swapiService} >
             <ErrorBoundry>
                 <Router>
                     <div>
-                        <Menu jwtToken={jwtToken}/>
+                        {menu}
                         <Switch>
                             <Route path="/"
                                    render={() => (
                                        <div className="row mb2">
-                                           <PersonDetails jwtToken={jwtToken} swapiService={swapiService}/>
+                                           <PersonDetails jwtToken={jwtToken} isLoggedIn={isLoggedIn} swapiService={swapiService}/>
                                            {accountDetail}
                                        </div>
                                    )}
                                    exact/>
                             <Route path="/tariff"
                                    render={() => (
-                                       <TariffDetails jwtToken={jwtToken} swapiService={swapiService}/>
+                                       <TariffDetails jwtToken={jwtToken} isLoggedIn={isLoggedIn} swapiService={swapiService}/>
                                    )}
                                    exact/>
                             <Route path="/admin/tariff"
                                    render={() => (
-                                       <TariffEdit jwtToken={jwtToken} swapiService={swapiService}/>
+                                       <TariffEdit jwtToken={jwtToken} isLoggedIn={isLoggedIn} swapiService={swapiService}/>
                                    )}
                                    exact/>
                             <Route path="/register"
                                    render={() => (
-                                       <RegisterPage jwtToken={jwtToken} swapiService={swapiService}/>
+                                       <RegisterPage jwtToken={jwtToken} isLoggedIn={isLoggedIn} swapiService={swapiService}/>
                                    )}
                                    exact/>
                             <Route path="/account"
                                    render={() => (
-                                       <AccountDetails jwtToken={jwtToken} swapiService={swapiService}/>
+                                       <AccountDetails jwtToken={jwtToken} isLoggedIn={isLoggedIn} swapiService={swapiService}/>
                                    )}
                                    exact/>
                             <Route path="/payments"
                                    render={() => (
-                                       <PaymentDetails jwtToken={jwtToken} swapiService={swapiService}/>
+                                       <PaymentDetails jwtToken={jwtToken} isLoggedIn={isLoggedIn} swapiService={swapiService}/>
                                    )}
                                    exact/>
                             <Route
@@ -94,7 +105,12 @@ export default class App extends Component {
                             <Route
                                 path="/client"
                                 render={() => (
-                                    <ClientDetails jwtToken={jwtToken} swapiService={swapiService}/>
+                                    <ClientDetails jwtToken={jwtToken} isLoggedIn={isLoggedIn} swapiService={swapiService}/>
+                                )}/>
+                            <Route
+                                path="/logout"
+                                render={() => (
+                                    <ClientDetails jwtToken={jwtToken} isLoggedIn={isLoggedIn} swapiService={swapiService}/>
                                 )}/>
                         </Switch>
                     </div>

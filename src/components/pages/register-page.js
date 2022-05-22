@@ -1,11 +1,15 @@
 import React, {useState} from 'react';
-import {withRouter} from 'react-router-dom';
+import {Redirect, withRouter} from 'react-router-dom';
 import SwapiService from "../../services/swapi-service";
 
-const RegisterPage = ({history}) => {
+const RegisterPage = ({history, isLoggedIn}) => {
 
     const [errorMessages, setErrorMessages] = useState('');
     const [loginError, setLoginError] = useState('');
+
+    if (isLoggedIn) {
+        return <Redirect to="/"/>;
+    }
 
     const createAccount = (clientId) => {
         var {address} = document.forms[0];
@@ -148,7 +152,7 @@ const RegisterPage = ({history}) => {
                 </div>
                 <div className="form-group">
                     <button className="btn btn-primary" type="submit">
-                        Login
+                        Регистрация
                     </button>
                 </div>
             </form>

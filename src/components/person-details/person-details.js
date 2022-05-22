@@ -5,14 +5,13 @@ import ErrorIndicator from "../error-indicator";
 import Spinner from "../spinner";
 import ErrorAuth from "../error-auth";
 import MainPage from "../main-page/main-page";
-import Tariffs from "../tarrifs/tariffs";
 
 export default class PersonDetails extends Component {
 
     state = {
         data: null,
         hasError: false,
-        isLoggedIn: true
+        isLoggedIn: this.props.isLoggedIn
     };
 
     onError = (error) => {
@@ -40,6 +39,7 @@ export default class PersonDetails extends Component {
 
     render() {
         const {hasError, data, isLoggedIn} = this.state;
+        console.log(`My isloggedin=${isLoggedIn}`)
         if (!isLoggedIn) {
             return <ErrorAuth/>
         }

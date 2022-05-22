@@ -14,7 +14,7 @@ export default class TariffEdit extends Component {
         data: null,
         account: {},
         hasError: false,
-        isLoggedIn: true
+        isLoggedIn: this.props.isLoggedIn
     };
 
     onError = (error) => {
