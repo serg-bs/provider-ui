@@ -77,20 +77,19 @@ export default class TariffDetails extends Component {
 
     render() {
         const {hasError, data, isLoggedIn} = this.state;
-        const {jwtToken} = this.props;
+
         if (!isLoggedIn) {
             return <ErrorAuth/>
         }
-        if (hasError) {
-            return <ErrorIndicator/>
-        }
-        if (!data) {
-            return <Spinner/>;
-        }
+        const errorMessage = hasError ? <ErrorIndicator/> : null;
+        const spinner = !data ? <Spinner /> : null;
+        const content = data ? <Tariffs tariffData={data} updateTariff={this.updateTariff}
+                                        current={this.state.account.tariffId}></Tariffs> : null;
         return (
-            <div>
-                <Tariffs tariffData={data} updateTariff={this.updateTariff}
-                         current={this.state.account.tariffId}></Tariffs>
+            <div className="person-details card top">
+                {errorMessage}
+                {spinner}
+                {content}
             </div>
         )
     }

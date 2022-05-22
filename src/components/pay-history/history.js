@@ -11,7 +11,7 @@ const Payments = (props) => {
     })
     console.log(elements2)
     return (
-        <div className="person-details card top">
+
             <table className="table color">
                 <thead className="list-head">
                 <tr>
@@ -22,7 +22,7 @@ const Payments = (props) => {
                 </thead>
                 <tbody>{elements2}</tbody>
             </table>
-        </div>
+
     );
 };
 export default Payments

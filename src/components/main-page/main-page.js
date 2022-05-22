@@ -5,7 +5,7 @@ import DummySwapiService from "../../services/dummy-swapi-service";
 const MainPage = (clientData) => {
     const class2 = "list-group-item"
     return (
-        <div className="person-details item-details card card-position col-md-6">
+
             <div className="card-body">
                 <ul className="list-group ">
                     <li className={class2}>
@@ -41,7 +41,7 @@ const MainPage = (clientData) => {
                     </li>
                 </ul>
             </div>
-        </div>
+
     );
 };
 export default MainPage

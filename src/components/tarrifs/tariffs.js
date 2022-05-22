@@ -14,7 +14,6 @@ const Tariffs = (props) => {
     })
     console.log(elements)
     return (
-        <div className="person-details card top">
             <table className="table position">
                 <thead className="list-head">
                 <tr>
@@ -27,7 +26,6 @@ const Tariffs = (props) => {
                 </thead>
                 <tbody>{elements}</tbody>
             </table>
-        </div>
     );
 };
 export default Tariffs

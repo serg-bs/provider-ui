@@ -6,6 +6,7 @@ import Spinner from "../spinner";
 import ErrorAuth from "../error-auth";
 import Menu from "../menu/menu";
 import Payments from "../pay-history/history";
+import AccountPage from "../account-page/account-page";
 
 export default class PaymentDetails extends Component {
 
@@ -48,19 +49,19 @@ export default class PaymentDetails extends Component {
 
     render() {
         const {hasError, data, isLoggedIn} = this.state;
-        const {jwtToken} = this.props;
         if (!isLoggedIn) {
             return <ErrorAuth/>
         }
-        if (hasError) {
-            return <ErrorIndicator/>
-        }
-        if (!data) {
-            return <Spinner/>;
-        }
+
+        const errorMessage = hasError ? <ErrorIndicator/> : null;
+        const spinner = !data ? <Spinner /> : null;
+        const content = data ? <Payments historyData={data}/> : null;
+
         return (
-            <div>
-                <Payments historyData={data}/>
+            <div className="person-details card top">
+                {errorMessage}
+                {spinner}
+                {content}
             </div>
         )
     }

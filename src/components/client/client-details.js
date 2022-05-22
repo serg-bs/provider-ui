@@ -46,7 +46,7 @@ export default class ClientDetails extends Component {
         data.then(
             (data) => {
                 this.setState({
-                    validation : data.message
+                    validation: data.message
                 })
             }
         )
@@ -57,46 +57,43 @@ export default class ClientDetails extends Component {
         swapiService.updateClient(payload, jwtToken)
             .then((res) => {
                 this.setState({
-                    validation : ''
+                    validation: ''
                 })
                 if (!res.ok && res.status === 400) {
                     return this.showValidationError(res.json())
                 }
 
-                if (!res.ok ) {
+                if (!res.ok) {
                     this.setState({
                         hasError: true
                     });
                     return
                 }
-
                 this.setState({
                     hasError: false
                 });
-            }).catch( (err ) => {
-            console.log(err)
-        });
+            }).catch((err) => {
 
+        });
     }
 
     render() {
         const {hasError, data, isLoggedIn} = this.state;
-        const {jwtToken} = this.props;
-        console.log(jwtToken)
         if (!isLoggedIn) {
             return <ErrorAuth/>
         }
-        if (hasError) {
-            return <ErrorIndicator/>
-        }
-        if (!data) {
-            return <Spinner/>;
-        }
-        const validationError = this.state.validation !== '' ? <Validation message={this.state.validation}/> : ''
+        const errorMessage = hasError ? <ErrorIndicator/> : null;
+        const spinner = !data ? <Spinner/> : null;
+        const content = data ?
+            <Client {...data} updateClient={this.updateClient} validation={this.state.validation}/> : null;
+
         return (
             <div>
-                {validationError}
-            <Client {...data} updateClient={this.updateClient} jwtToken={jwtToken}/>
+                <div className="person-details card top">
+                    {errorMessage}
+                    {spinner}
+                    {content}
+                </div>
             </div>
         )
     }

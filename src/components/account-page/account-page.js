@@ -10,7 +10,6 @@ const AccountPage = (props) => {
     const class2 = "list-group-item"
     const status = props.status ? "Online" : "Offline";
     return (
-        <div className="person-details item-details card card-position col-md-6 main-block-right ">
             <div className="card-body ">
                 <div>
                     <ul className="list-group">
@@ -40,7 +39,6 @@ const AccountPage = (props) => {
                     </div>
                 </div>
             </div>
-        </div>
     );
 };
 export default AccountPage

@@ -5,6 +5,7 @@ import ErrorIndicator from "../error-indicator";
 import Spinner from "../spinner";
 import ErrorAuth from "../error-auth";
 import MainPage from "../main-page/main-page";
+import Tariffs from "../tarrifs/tariffs";
 
 export default class PersonDetails extends Component {
 
@@ -42,14 +43,16 @@ export default class PersonDetails extends Component {
         if (!isLoggedIn) {
             return <ErrorAuth/>
         }
-        if (hasError) {
-            return <ErrorIndicator/>
-        }
-        if (!data) {
-            return <Spinner/>;
-        }
+        const errorMessage = hasError ? <ErrorIndicator/> : null;
+        const spinner = !data ? <Spinner /> : null;
+        const content = data ? <MainPage {...data}/> : null;
+
         return (
-            <MainPage {...data}/>
+            <div className="person-details item-details card card-position col-md-6">
+                {errorMessage}
+                {spinner}
+                {content}
+            </div>
          )
     }
 }
