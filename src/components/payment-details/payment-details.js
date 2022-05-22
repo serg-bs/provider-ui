@@ -48,6 +48,7 @@ export default class PaymentDetails extends Component {
 
     render() {
         const {hasError, data, isLoggedIn} = this.state;
+        const {jwtToken} = this.props;
         if (!isLoggedIn) {
             return <ErrorAuth/>
         }
@@ -59,7 +60,7 @@ export default class PaymentDetails extends Component {
         }
         return (
             <div>
-                <Menu/>
+                <Menu jwtToken={jwtToken}/>
                 <Payments historyData={data}/>
             </div>
         )

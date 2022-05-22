@@ -9,10 +9,12 @@ import PaymentDetails from "../payment-details";
 import AccountDetails from "../account-details";
 import RegisterPage from "../pages/register-page";
 import PersonDetails from "../person-details";
-import SwapiService from "../../services/swapi-service";
 import Menu from "../menu/menu";
 import DummySwapiService from "../../services/dummy-swapi-service";
 import ClientDetails from "../client/client-details";
+import SwapiService from "../../services/swapi-service";
+import TariffEdit from "../admin-tariff";
+import jwt from "jwt-decode";
 
 
 export default class App extends Component {
@@ -20,9 +22,12 @@ export default class App extends Component {
 
     state = {
         isLoggedIn: false,
-        jwt: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRJZCI6MiwidHlwZSI6ImNsaWVudCIsImlhdCI6MTY1MjEzMTg0NCwiZXhwIjo3MzY1MjEzMTg0NH0.VUWRqrU4iS8MSclPhpX8ahzF8ym1BXqT2JJaVkyizyc',
-        //swapiService: new SwapiService()
-        swapiService: new DummySwapiService()
+        //client
+         jwtToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRJZCI6MiwidHlwZSI6ImNsaWVudCIsImlhdCI6MTY1MjEzMTg0NCwiZXhwIjo3MzY1MjEzMTg0NH0.VUWRqrU4iS8MSclPhpX8ahzF8ym1BXqT2JJaVkyizyc',
+        //admin token
+        //jwtToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRJZCI6NiwidHlwZSI6ImFkbWluIiwiaWF0IjoxNjUzMjA1MDkxLCJleHAiOjczNjUzMjA1MDkxfQ.sk2F_iFIa8M8yTtwtD7oB0t5sylg0CA0c3GKuj0Rfms',
+        swapiService: new SwapiService()
+        //swapiService: new DummySwapiService()
     };
 
     onLogin = (payload) => {
@@ -30,15 +35,15 @@ export default class App extends Component {
         return promise.then((data) => {
             this.setState({
                 isLoggedIn: true,
-                jwt: data.access_token
+                jwtToken: data.access_token
             });
         })
     };
 
     render() {
-        const {isLoggedIn, jwt, swapiService} = this.state;
-        console.log(swapiService)
-        console.log(jwt)
+        const {isLoggedIn, jwtToken, swapiService} = this.state;
+        const {type} = jwt(jwtToken);
+        const accountDetail = type === 'client' ? <AccountDetails jwtTokenToken={jwtToken} swapiService={swapiService}/> : ''
         return (
             <SwapiServiceProvider value={this.state.swapiService} >
             <ErrorBoundry>
@@ -48,35 +53,35 @@ export default class App extends Component {
                             <Route path="/"
                                    render={() => (
                                        <div className="row mb2">
-                                           <Menu/>
-                                           <PersonDetails jwtToken={jwt} swapiService={swapiService}/>
-                                           <AccountDetails jwtToken={jwt} swapiService={swapiService}/>
+                                           <Menu jwtToken={jwtToken}/>
+                                           <PersonDetails jwtToken={jwtToken} swapiService={swapiService}/>
+                                           {accountDetail}
                                        </div>
                                    )}
                                    exact/>
                             <Route path="/tariff"
                                    render={() => (
-                                       <TariffDetails jwtToken={jwt} swapiService={swapiService}/>
+                                       <TariffDetails jwtToken={jwtToken} swapiService={swapiService}/>
+                                   )}
+                                   exact/>
+                            <Route path="/admin/tariff"
+                                   render={() => (
+                                       <TariffEdit jwtToken={jwtToken} swapiService={swapiService}/>
                                    )}
                                    exact/>
                             <Route path="/register"
                                    render={() => (
-                                       <RegisterPage jwtToken={jwt} swapiService={swapiService}/>
+                                       <RegisterPage jwtToken={jwtToken} swapiService={swapiService}/>
                                    )}
                                    exact/>
-                            {/*<Route path="/ex"*/}
-                            {/*       render={() => (*/}
-                            {/*           <Example/>*/}
-                            {/*       )}*/}
-                            {/*       exact/>*/}
                             <Route path="/account"
                                    render={() => (
-                                       <AccountDetails jwtToken={jwt} swapiService={swapiService}/>
+                                       <AccountDetails jwtToken={jwtToken} swapiService={swapiService}/>
                                    )}
                                    exact/>
                             <Route path="/payments"
                                    render={() => (
-                                       <PaymentDetails jwtToken={jwt} swapiService={swapiService}/>
+                                       <PaymentDetails jwtToken={jwtToken} swapiService={swapiService}/>
                                    )}
                                    exact/>
                             <Route
@@ -89,7 +94,7 @@ export default class App extends Component {
                             <Route
                                 path="/client"
                                 render={() => (
-                                    <ClientDetails jwtToken={jwt} swapiService={swapiService}/>
+                                    <ClientDetails jwtToken={jwtToken} swapiService={swapiService}/>
                                 )}/>
                         </Switch>
                     </div>

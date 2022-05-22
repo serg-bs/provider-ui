@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 
-import './tariff-details.css';
+import './tariff-edit.css';
 import ErrorIndicator from "../error-indicator";
 import Spinner from "../spinner";
 import ErrorAuth from "../error-auth";
 import Menu from "../menu/menu";
 import Tariffs from "../tarrifs/tariffs";
+import TariffsList from "./tariffsList";
 
-export default class TariffDetails extends Component {
+export default class TariffEdit extends Component {
 
     state = {
         data: null,
@@ -90,8 +91,8 @@ export default class TariffDetails extends Component {
         return (
             <div>
                 <Menu jwtToken={jwtToken}/>
-                <Tariffs tariffData={data} updateTariff={this.updateTariff}
-                         current={this.state.account.tariffId}></Tariffs>
+                <TariffsList tariffData={data} updateTariff={this.updateTariff}
+                         current={this.state.account.tariffId}></TariffsList>
             </div>
         )
     }

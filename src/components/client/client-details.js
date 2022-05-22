@@ -81,6 +81,8 @@ export default class ClientDetails extends Component {
 
     render() {
         const {hasError, data, isLoggedIn} = this.state;
+        const {jwtToken} = this.props;
+        console.log(jwtToken)
         if (!isLoggedIn) {
             return <ErrorAuth/>
         }
@@ -94,7 +96,7 @@ export default class ClientDetails extends Component {
         return (
             <div>
                 {validationError}
-            <Client {...data} updateClient={this.updateClient}/>
+            <Client {...data} updateClient={this.updateClient} jwtToken={jwtToken}/>
             </div>
         )
     }
