@@ -12,7 +12,6 @@ const Tariffs = (props) => {
             <Tariffsitems {...item} updateTariff={updateTariff} connected={current === item.id}/>
         )
     })
-    console.log(elements)
     return (
             <table className="table position">
                 <thead className="list-head">

@@ -13,7 +13,7 @@ export default class TariffDetails extends Component {
         data: null,
         account: {},
         hasError: false,
-        isLoggedIn: true
+        isLoggedIn: this.props.isLoggedIn
     };
 
     onError = (error) => {
@@ -77,7 +77,6 @@ export default class TariffDetails extends Component {
 
     render() {
         const {hasError, data, isLoggedIn} = this.state;
-
         if (!isLoggedIn) {
             return <ErrorAuth/>
         }

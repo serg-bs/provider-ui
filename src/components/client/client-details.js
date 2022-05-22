@@ -11,7 +11,7 @@ export default class ClientDetails extends Component {
     state = {
         data: null,
         hasError: false,
-        isLoggedIn: true,
+        isLoggedIn: this.props.isLoggedIn,
         validation: ''
     };
 

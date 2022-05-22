@@ -108,12 +108,12 @@ const RegisterPage = ({history, isLoggedIn}) => {
                         // value="serg"
                            className="form-control"
                            placeholder="Введите логин"></input>
-                    <label htmlFor="name" className="form-label mt-4">Адресс</label>
+                    <label htmlFor="name" className="form-label mt-4">Адрес</label>
                     <input id="address"
                            name="address"
                            value="Владимир "
                            className="form-control"
-                           placeholder="Введите адресс"></input>
+                           placeholder="Введите Адрес"></input>
                     <label htmlFor="name" className="form-label mt-4">email</label>
                     <input id="email"
                            name="email"

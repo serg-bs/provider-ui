@@ -14,7 +14,7 @@ const LoginPage = ({isLoggedIn, onLogin}) => {
         var {login, password} = document.forms[0];
         const response =  onLogin({login: login.value, password: password.value});
         response.catch((res) => {
-            setErrorMessages('Invalid login password');
+            setErrorMessages('Вы ввели неправильный логин, пароль!');
         })
 
         console.log(response);
@@ -22,7 +22,7 @@ const LoginPage = ({isLoggedIn, onLogin}) => {
 
     const renderErrorMessage = () =>(
         errorMessages !== "" && (
-            <div className="error">{errorMessages}</div>)
+            <div className="error-indicator">{errorMessages}</div>)
         );
 
     return (

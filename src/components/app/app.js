@@ -21,13 +21,14 @@ export default class App extends Component {
 
 
     state = {
-        isLoggedIn: localStorage.getItem('token') ? true : false,
+        isLoggedIn: true,
+        // isLoggedIn: localStorage.getItem('token') ? true : false,
         //client
          jwtToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRJZCI6MiwidHlwZSI6ImNsaWVudCIsImlhdCI6MTY1MjEzMTg0NCwiZXhwIjo3MzY1MjEzMTg0NH0.VUWRqrU4iS8MSclPhpX8ahzF8ym1BXqT2JJaVkyizyc',
         //admin token
         //jwtToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRJZCI6NiwidHlwZSI6ImFkbWluIiwiaWF0IjoxNjUzMjA1MDkxLCJleHAiOjczNjUzMjA1MDkxfQ.sk2F_iFIa8M8yTtwtD7oB0t5sylg0CA0c3GKuj0Rfms',
-        swapiService: new SwapiService()
-        //swapiService: new DummySwapiService()
+        //swapiService: new SwapiService()
+        swapiService: new DummySwapiService()
     };
 
     onLogin = (payload) => {
@@ -42,8 +43,7 @@ export default class App extends Component {
     };
 
     onLogout = () => {
-        console.log('sdfsdfsdfsdf')
-        localStorage.setItem('token', null);
+        localStorage.removeItem('token')
             this.setState({
                 isLoggedIn: false,
                 jwtToken: false
