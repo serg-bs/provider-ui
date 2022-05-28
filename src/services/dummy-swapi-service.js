@@ -1,7 +1,7 @@
 export default class DummySwapiService {
 
     _client = {
-        id: 2,
+        id: 1,
         name: "Patrik",
         surename: "Collman",
         middlename: "Michailovich",
@@ -10,6 +10,35 @@ export default class DummySwapiService {
         phone: "+7910999999",
         email: "patric@yandex.ru"
     }
+
+    _clients = [{
+        id: 2,
+        name: "Patrik",
+        surename: "Half",
+        middlename: "yellow",
+        address: "Turkieva",
+        login: "Sponge bob",
+        phone: "+793875398467",
+        email: "SpongeBob@yandex.ru"
+    },{
+        id: 3,
+        name: "Mike",
+        surename: "Collman",
+        middlename: "Michailovich",
+        address: "Baturina",
+        login: "patric",
+        phone: "+7910999999",
+        email: "patric@yandex.ru"
+    },{
+        id: 3,
+        name: "Alex",
+        surename: "Col",
+        middlename: "Michailovich",
+        address: "Bata",
+        login: "patic",
+        phone: "+7910999999",
+        email: "pat@yandex.ru"
+    }]
 
     _tariffs = [
         {id: 1, name: "Забугорище", speed: 100, price: 1000, enabled: true},
@@ -73,6 +102,9 @@ export default class DummySwapiService {
 
     async getClient(id, jwt) {
         return this._client;
+    };
+    async getClients(id, jwt) {
+        return this._clients;
     };
 
 }

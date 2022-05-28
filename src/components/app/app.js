@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
 import LoginPage from "../pages/login-page";
+import AdminClientEdit from "../admin-client-edit/admin-client-edit";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import ErrorBoundry from "../error-boundry";
 import {SwapiServiceProvider} from '../swapi-service-context';
@@ -15,6 +16,7 @@ import ClientDetails from "../client/client-details";
 import SwapiService from "../../services/swapi-service";
 import TariffEdit from "../admin-tariff";
 import jwt from "jwt-decode";
+import AdminClient from "../admin-client/admin-client";
 
 
 export default class App extends Component {
@@ -24,7 +26,7 @@ export default class App extends Component {
         isLoggedIn: true,
         // isLoggedIn: localStorage.getItem('token') ? true : false,
         //client
-         jwtToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRJZCI6MiwidHlwZSI6ImNsaWVudCIsImlhdCI6MTY1MjEzMTg0NCwiZXhwIjo3MzY1MjEzMTg0NH0.VUWRqrU4iS8MSclPhpX8ahzF8ym1BXqT2JJaVkyizyc',
+        jwtToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRJZCI6MiwidHlwZSI6ImNsaWVudCIsImlhdCI6MTY1MjEzMTg0NCwiZXhwIjo3MzY1MjEzMTg0NH0.VUWRqrU4iS8MSclPhpX8ahzF8ym1BXqT2JJaVkyizyc',
         //admin token
         //jwtToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRJZCI6NiwidHlwZSI6ImFkbWluIiwiaWF0IjoxNjUzMjA1MDkxLCJleHAiOjczNjUzMjA1MDkxfQ.sk2F_iFIa8M8yTtwtD7oB0t5sylg0CA0c3GKuj0Rfms',
         //swapiService: new SwapiService()
@@ -111,6 +113,16 @@ export default class App extends Component {
                                 path="/logout"
                                 render={() => (
                                     <ClientDetails jwtToken={jwtToken} isLoggedIn={isLoggedIn} swapiService={swapiService}/>
+                                )}/>
+                            <Route
+                                path="/admin/client"
+                                render={() => (
+                                    <AdminClient jwtToken={jwtToken} isLoggedIn={isLoggedIn} swapiService={swapiService}/>
+                                )}exact/>
+                            <Route
+                                path="/admin/client/edit"
+                                render={() => (
+                                    <AdminClientEdit jwtToken={jwtToken} isLoggedIn={isLoggedIn} swapiService={swapiService}/>
                                 )}/>
                         </Switch>
                     </div>

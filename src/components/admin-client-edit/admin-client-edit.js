@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import "./client.css"
+import "../client/client.css"
 import Menu from "../menu/menu";
 import Validation from "../validation";
-const Client = (props) => {
+const AdminClientEdit = (props) => {
 
     const [name, setName] = useState(props.name);
     const [surename, setSurename] = useState(props.surename);
@@ -19,7 +19,7 @@ const Client = (props) => {
 
     }
     return (
-        <div className="card-body">
+        <div className="card-body card top">
             <form className="list-group">
                 <center className="term text-client-info">Данные пользователя</center>
                 <Validation message={props.validation}/>
@@ -48,4 +48,4 @@ const Client = (props) => {
         </div>
     );
 };
-export default Client
+export default AdminClientEdit

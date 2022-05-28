@@ -4,7 +4,7 @@ import SwapiService from "../../services/swapi-service";
 
 const RegisterPage = ({history, isLoggedIn}) => {
 
-    const [errorMessages, setErrorMessages] = useState('');
+    const [errorMessages, setErrorMessages] = useState('Имя пользователя не может быть пустым');
     const [loginError, setLoginError] = useState('');
 
     if (isLoggedIn) {
@@ -76,7 +76,7 @@ const RegisterPage = ({history, isLoggedIn}) => {
 
     const renderErrorMessage = () => (
         errorMessages !== "" && (
-            <div className="error">{errorMessages}</div>)
+            <div className="error-indicator">{errorMessages}</div>)
     );
 
     const renderLoginMessage = () => (

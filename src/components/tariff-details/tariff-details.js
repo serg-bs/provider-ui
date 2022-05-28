@@ -5,7 +5,7 @@ import ErrorIndicator from "../error-indicator";
 import Spinner from "../spinner";
 import ErrorAuth from "../error-auth";
 import Menu from "../menu/menu";
-import Tariffs from "../tarrifs/tariffs";
+import TariffList from "../tarrifs/tariffList";
 
 export default class TariffDetails extends Component {
 
@@ -82,8 +82,8 @@ export default class TariffDetails extends Component {
         }
         const errorMessage = hasError ? <ErrorIndicator/> : null;
         const spinner = !data ? <Spinner /> : null;
-        const content = data ? <Tariffs tariffData={data} updateTariff={this.updateTariff}
-                                        current={this.state.account.tariffId}></Tariffs> : null;
+        const content = data ? <TariffList tariffData={data} updateTariff={this.updateTariff}
+                                           current={this.state.account.tariffId}></TariffList> : null;
         return (
             <div className="person-details card top">
                 {errorMessage}

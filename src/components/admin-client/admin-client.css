@@ -1,0 +1,22 @@
+.admin-client-list-input {
+    position: relative;
+    width: 100px;
+    top: 0px;
+}
+.buttonshover {
+background-color: white;
+}
+.buttonshover:hover {
+    opacity: .5;
+}
+.buttonshovertrash {
+    background-color: #ffffff;
+    margin-left: 10px;
+}
+.buttonshovertrash:hover {
+    background-color: red;
+    opacity: .9;
+}
+.border-radius {
+    border-radius: 5px;
+}

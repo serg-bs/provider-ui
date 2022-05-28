@@ -2,7 +2,7 @@ import React from "react";
 import "./list.css"
 import Tariffsitems from "./tariffsitems";
 
-const Tariffs = (props) => {
+const TariffList = (props) => {
     const {tariffData, updateTariff, current} = props;
     console.log(`current=${current}`)
 
@@ -27,4 +27,4 @@ const Tariffs = (props) => {
             </table>
     );
 };
-export default Tariffs
+export default TariffList

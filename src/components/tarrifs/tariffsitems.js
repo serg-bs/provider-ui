@@ -8,7 +8,7 @@ const Tariffsitems = (props) => {
     const returnButton = () => {
         console.log(`connected=${connected}`)
         if (!connected) {
-            return (<button className="btn btn-primary" onClick={() => updateTariff(id)}>connect</button>)
+            return (<button className="border btn-primary" onClick={() => updateTariff(id)}>connect</button>)
         } else {
             return ('')
         }

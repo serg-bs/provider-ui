@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import {Link, Redirect} from 'react-router-dom';
+import "./login-page.css"
 
 
 const LoginPage = ({isLoggedIn, onLogin}) => {
 
-    const [errorMessages, setErrorMessages] = useState('');
+    const [errorMessages, setErrorMessages] = useState('Вы ввели неправильный логин, пароль!');
 
     if (isLoggedIn) {
         return <Redirect to="/"/>;

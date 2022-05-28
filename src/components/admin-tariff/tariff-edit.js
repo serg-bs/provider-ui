@@ -5,7 +5,7 @@ import ErrorIndicator from "../error-indicator";
 import Spinner from "../spinner";
 import ErrorAuth from "../error-auth";
 import Menu from "../menu/menu";
-import Tariffs from "../tarrifs/tariffs";
+import TariffList from "../tarrifs/tariffList";
 import TariffsList from "./tariffsList";
 
 export default class TariffEdit extends Component {

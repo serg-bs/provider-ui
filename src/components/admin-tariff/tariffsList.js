@@ -13,7 +13,7 @@ const TariffsList = (props) => {
         )
     })
     console.log(elements)
-    const class3 = ('border-block')
+    const class3 = ('border-block row mb2 col-md-6')
     return (
         <div className="person-details card top">
         <table className="table color-element">
