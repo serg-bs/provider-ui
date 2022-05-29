@@ -6,7 +6,9 @@
 }
 .top {
     position: relative;
-    top: 100px;
+    top: 70px;
+    border-radius: 10px;
+    background-color: #333232;
 }
 .buttons-size {
     position: relative;

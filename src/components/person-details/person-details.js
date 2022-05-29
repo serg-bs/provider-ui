@@ -15,6 +15,8 @@ export default class PersonDetails extends Component {
     };
 
     onError = (error) => {
+        console.log('KKKKKKKKKKKKKKKKKK')
+        console.log(error)
         if (error && error.message === 'Redirect to login') {
             this.setState({
                 isLoggedIn: false
@@ -48,7 +50,7 @@ export default class PersonDetails extends Component {
         const content = data ? <MainPage {...data}/> : null;
 
         return (
-            <div className="person-details item-details card card-position col-md-6">
+            <div className="person-details item-details card-position col-md-6">
                 {errorMessage}
                 {spinner}
                 {content}

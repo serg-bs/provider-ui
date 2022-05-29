@@ -3,10 +3,10 @@ import './main-page.css'
 import DummySwapiService from "../../services/dummy-swapi-service";
 
 const MainPage = (clientData) => {
-    const class2 = "list-group-item"
+    const class2 = ""
     return (
 
-            <div className="card-body">
+            <div className="card-body card">
                 <ul className="list-group ">
                     <li className={class2}>
                         <center>Информация о клиенте</center>
