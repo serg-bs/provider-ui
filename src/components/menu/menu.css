@@ -14,3 +14,19 @@
     background-color: black;
     left: 0px;
 }
+.exit-button-position {
+   right: 0px;
+    left: auto;
+
+}
+.width-control-exit {
+
+}
+@media screen and (max-width: 991.11px) {
+    .width-control-exit {
+
+    }
+}
+.margin-inline-end {
+    margin-left: 500px;
+}

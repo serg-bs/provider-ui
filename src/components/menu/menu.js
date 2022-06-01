@@ -2,9 +2,27 @@ import React, {Component} from 'react';
 import './menu.css';
 import {Link} from "react-router-dom";
 import jwt from "jwt-decode";
+import "./telecom_logo.png"
+import el from "./telecom_logo.png"
 
 export default class Menu extends Component {
+    state = {
+      show: false
+    };
+    menuLabelClick = () => {
+        console.log("hhhhhhhhhhhhhhhhhh")
+      this.setState(({show})=> {
+          return {
+           show: !show
+          };
+      })
+    };
     render() {
+        const { show } = this.state;
+        let className = "navbar-collapse collapse";
+        if (show) {
+            className += ' show';
+        }
         const {jwtToken, onLogout} = this.props;
         const {type} = jwt(jwtToken);
         const class1 = "btn btn-secondary"
@@ -12,43 +30,33 @@ export default class Menu extends Component {
             return (
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <div className="container-fluid">
-                        <a className="navbar-brand" href="#">Navbar</a>
-                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        <a className="navbar-brand" href="#" src={el}></a>
+                        <button onClick={this.menuLabelClick} className="navbar-toggler" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="true"
                                 aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
 
-                        <div className="navbar-collapse collapse show" id="navbarColor02">
+                        <div className={className} id="navbarColor02">
                             <ul className="navbar-nav me-auto">
                                 <li className="nav-item">
-                                    <a className="nav-link active" href="#">Главная
+                                    <Link to="/" className="nav-link active" href="#">Главная
                                         <span className="visually-hidden"></span>
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="#">Features</a>
+                                    <Link to="/tariff" className="nav-link" href="#">Тарифы</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="#">Pricing</a>
+                                    <Link to="/payments" className="nav-link" href="#">Платежи</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="#">About</a>
+                                    <Link to="/client" className="nav-link" href="#">Инфо</Link>
                                 </li>
-                                <li className="nav-item dropdown">
-                                    <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
-                                       role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                                    <div className="dropdown-menu">
-                                        <a className="dropdown-item" href="#">Action</a>
-                                        <a className="dropdown-item" href="#">Another action</a>
-                                        <a className="dropdown-item" href="#">Something else here</a>
-                                        <div className="dropdown-divider"></div>
-                                        <a className="dropdown-item" href="#">Separated link</a>
-                                    </div>
-                                </li>
+
                             </ul>
-                            <form className="d-flex">
-                                    <button className="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                            <form className="d-flex exit-button-position">
+                                    <Link to="/login" onClick={onLogout} className="margin-inline-end width-control-exit btn btn-secondary my-2 my-sm-0" type="submit">Выйти</Link>
                             </form>
                         </div>
                     </div>
