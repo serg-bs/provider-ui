@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import jwt from "jwt-decode";
 import "./telecom_logo.png"
 import el from "./telecom_logo.png"
+import HeadStyle from "../../background-style/head-style";
 
 export default class Menu extends Component {
     state = {
@@ -28,6 +29,8 @@ export default class Menu extends Component {
         const class1 = "btn btn-secondary"
         if (type === 'client'){
             return (
+                <div>
+                    <div><HeadStyle/></div>
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <div className="container-fluid">
                         <a className="navbar-brand" href="#" src={el}></a>
@@ -55,12 +58,15 @@ export default class Menu extends Component {
                                 </li>
 
                             </ul>
+                            <div className="margin-inline-end">
                             <form className="d-flex exit-button-position">
-                                    <Link to="/login" onClick={onLogout} className="margin-inline-end width-control-exit btn btn-secondary my-2 my-sm-0" type="submit">Выйти</Link>
+                                    <Link to="/login" onClick={onLogout} className="nav-linkmy-2 my-sm-0 " type="submit">Выйти</Link>
                             </form>
+                            </div>
                         </div>
                     </div>
                 </nav>
+                </div>
                )
                {/*//  <div>*/}
                {/*//  <div className="list" role="group" aria-label="Basic example">*/}

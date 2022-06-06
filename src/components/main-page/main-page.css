@@ -36,25 +36,3 @@
     top: 20px;
     width: 300px;
 }
-.tariff__wrapper {
-    width: auto;
-    padding: 0 18px;
-    display: inline-block;
-    vertical-align: top;
-    text-align: center;
-}
-.tariff-margin {
-    width: 300px;
-    height: 400px;
-    display: inline-block;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    margin: 0 auto 30px;
-    cursor: default;
-    overflow: hidden;
-    position: relative;
-    z-index: 25;
-}
-.tariff__block {
-    text-align: center;
-    margin: 0 22px;
-}

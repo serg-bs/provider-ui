@@ -1,0 +1,10 @@
+.intro_back {
+    position: absolute;
+    left: 0px;
+    height: 450px;
+    width: 100%;
+    background-image: url("../img/intro-bg.jpg");
+}
+body {
+    background-color: white;
+}
