@@ -33,12 +33,6 @@ const TariffList = (props) => {
             <div className="tariff__wrapper">
                 <div className="tariff1"></div>
             </div>
-            <p className="price__block contacts__text">
-                Стоимость услуги вы можете уточнить по телефону горячей линнии
-                <a href="8 (800) 550-33-33"> 8 (800) 550-33-33</a>
-                 <pre> (звонок бесплатный)</pre>
-                <BottomInterface/>
-            </p>
         </div>
         </div>
         </div>

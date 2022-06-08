@@ -127,6 +127,7 @@ export default class App extends Component {
                                     <AdminClientEdit jwtToken={jwtToken} isLoggedIn={isLoggedIn} swapiService={swapiService}/>
                                 )}/>
                         </Switch>
+                        <BottomInterface/>
                     </div>
                 </Router>
             </ErrorBoundry>

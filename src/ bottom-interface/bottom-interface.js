@@ -4,6 +4,11 @@ import "./bottom-interface.css"
 const BottomInterface = () => {
 
     return(
+        <div>
+            <p className="price__block contacts__text">
+                Стоимость услуги вы можете уточнить по телефону горячей линнии
+                <a href="8 (800) 550-33-33"> 8 (800) 550-33-33</a>
+                <pre> (звонок бесплатный)</pre>
         <div className="Bottom-position">
             <div className="footer">
                 <div className="container">
@@ -29,6 +34,8 @@ const BottomInterface = () => {
                     </div>
                 </div>
             </div>
+        </div>
+            </p>
         </div>
     )
 }
