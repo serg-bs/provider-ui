@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 import './account-page.css'
+import {render} from "react-dom";
 
 const AccountPage = (props) => {
+
     const [payAmount, setPayAmount] = useState('');
 
     const addPayment = () => {
@@ -9,6 +11,7 @@ const AccountPage = (props) => {
     }
     const class2 = "list-group-item"
     const status = props.status ? "Online" : "Offline";
+
     return (
             <div className="card-body ">
                 <div>

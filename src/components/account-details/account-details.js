@@ -51,6 +51,7 @@ export default class AccountDetails extends Component {
                     error: false
                 });
                 this.getTariff(data.tariffId)
+
             }).catch(this.onError);
     }
 
@@ -66,6 +67,8 @@ export default class AccountDetails extends Component {
             "payDateTime": Date.now()
         }, jwtToken)
 
+        alert('ggg')
+
     }
 
     render() {
@@ -79,11 +82,14 @@ export default class AccountDetails extends Component {
         const content = data ? <AccountPage {...data} addPayment={this.addPayment} tariffName={this.state.tariffName}/> : null;
 
         return (
-            <div className="person-details item-details card card-position col-md-6 main-block-right ">
+<div className="col-md-6">
+                <div className="person-details item-details card card-position">
                 {errorMessage}
                 {spinner}
                 {content}
-            </div>
+    </div>
+    </div>
+
         )
 
     }

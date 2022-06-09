@@ -1,0 +1,46 @@
+.WindowComplete {
+    position: absolute;
+    background-image: url("./background.jpg");
+    background-size: 100%;
+    width: 600px;
+    height: 300px;
+    top: 200px;
+    z-index: 10;
+    left: 22%;
+    max-width: 50%;
+    border-radius: 20px;
+}
+.BackBlack {
+    background-color: black;
+}
+.TextWindowPosition {
+    position: absolute;
+    left: 37%;
+    color: #418c05;
+
+}
+.ImgWindow {
+    width: 132px;
+    padding: 0 10px;
+    position: absolute;
+    top: 80px;
+    left: 35%;
+
+}
+.OkButton {
+    position: absolute;
+    width: 100px;
+    height: 50px;
+    top: 240px;
+    left: 37%;
+}
+.InterfaceBackground {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #565656;
+    opacity: .5;
+    left: 0px;
+    top: 0px;
+    z-index: 9;
+}

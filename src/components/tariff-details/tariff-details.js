@@ -6,6 +6,7 @@ import Spinner from "../spinner";
 import ErrorAuth from "../error-auth";
 import Menu from "../menu/menu";
 import TariffList from "../tarrifs/tariffList";
+import WindowComplete from "../tarrifs/window-complete";
 
 export default class TariffDetails extends Component {
 
@@ -13,7 +14,8 @@ export default class TariffDetails extends Component {
         data: null,
         account: {},
         hasError: false,
-        isLoggedIn: this.props.isLoggedIn
+        isLoggedIn: this.props.isLoggedIn,
+        complete: false
     };
 
     onError = (error) => {
@@ -71,7 +73,11 @@ export default class TariffDetails extends Component {
         account.tariffId = tariffId
         this.updateAccount(account)
         this.setState({
-            account: {...account}
+            complete: true
+        })
+        this.setState({
+            account: {...account},
+
         })
     }
 
@@ -80,16 +86,20 @@ export default class TariffDetails extends Component {
         if (!isLoggedIn) {
             return <ErrorAuth/>
         }
+        const {complete} = this.state;
         const errorMessage = hasError ? <ErrorIndicator/> : null;
         const spinner = !data ? <Spinner /> : null;
         const content = data ? <TariffList tariffData={data} updateTariff={this.updateTariff}
                                            current={this.state.account.tariffId}></TariffList> : null;
+        const Error = complete ? <WindowComplete/> : null;
         return (
+            <div>
+                {Error}
             <div className="person-details card top">
                 {errorMessage}
                 {spinner}
                 {content}
-            </div>
+            </div></div>
         )
     }
 }
