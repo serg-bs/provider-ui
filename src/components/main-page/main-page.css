@@ -1,4 +1,12 @@
-
+.top-main {
+    top: 350px;
+}
+.elementClientInfo {
+    position: relative;
+    left: 0px;
+    margin-left: 100px;
+   max-width: 500px;
+}
 .person-details {
     display: flex;
     margin-top: 1rem;
@@ -20,7 +28,7 @@
     margin-right: .5rem;
 }
 .card-position {
-    top: 60px;
+    top: 400px;
     font-size: large;
 }
 .main-block-right {

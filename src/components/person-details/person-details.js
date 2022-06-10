@@ -50,7 +50,7 @@ export default class PersonDetails extends Component {
         const content = data ? <MainPage {...data}/> : null;
 
         return (
-            <div className="person-details item-details card-position col-md-6">
+            <div className="person-details item-details card-position col-md-6 card">
                 {errorMessage}
                 {spinner}
                 {content}

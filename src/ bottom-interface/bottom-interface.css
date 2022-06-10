@@ -1,6 +1,10 @@
+
+.PositionBottomMenu {
+    position: relative;
+    top: 420px;
+}
 .Bottom-position {
     position: absolute;
-    left: 0px;
     width: 100%;
 }
 .footer {
@@ -8,7 +12,7 @@
 }
 .container {
     width: 100%;
-    max-width: 1250px;
+    max-width: 1500px;
     margin: 0 auto;
 }
 .footer__inner {
@@ -31,10 +35,59 @@
 .copyright {
     padding: 20px 0;
     background-color: #313454;
+
 }
 .copyright__text {
     text-align: center;
     font-size: 14px;
     line-height: 1.5;
     color: #808080;
+}
+.contacts__text {
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.4;
+    color: black;
+}
+.tariff__wrapper {
+    width: auto;
+    padding: 0 18px;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+}
+.tariff-margin {
+    width: 300px;
+    height: 400px;
+    display: inline-block;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    margin: 0 auto 30px;
+    cursor: default;
+    overflow: hidden;
+    position: relative;
+    z-index: 25;
+}
+.tariff__block {
+    color: #252525;
+    font-size: 0;
+    text-align: center;
+    margin: 0 22px;
+}
+.tariff1 {
+    width: 275px;
+    height: 400px;
+    display: inline-block;
+    background-color: #f2f3f4;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    margin: 0 auto 30px;
+    cursor: default;
+    overflow: hidden;
+    position: relative;
+    z-index: 25;
+}
+.footer__address {
+    font-size: 18px;
+    line-height: 1.5;
+    font-style: normal;
+    color: rgba(255, 255, 255, 0.5);
 }

@@ -19,7 +19,7 @@ const Client = (props) => {
 
     }
     return (
-        <div className="card-body">
+        <div className="card-body ">
             <form className="list-group">
                 <center className="term text-client-info">Данные пользователя</center>
                 <Validation message={props.validation}/>

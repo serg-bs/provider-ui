@@ -3,8 +3,8 @@ import './menu.css';
 import {Link} from "react-router-dom";
 import jwt from "jwt-decode";
 import "./telecom_logo.png"
-import el from "./telecom_logo.png"
 import HeadStyle from "../../background-style/head-style";
+import img from "./telecom_logo.png"
 
 export default class Menu extends Component {
     state = {
@@ -33,7 +33,7 @@ export default class Menu extends Component {
                     <div><HeadStyle/></div>
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <div className="container-fluid">
-                        <a className="navbar-brand" href="#" src={el}></a>
+                        <a className="navbar-brand" href="#" src={img}></a>
                         <button onClick={this.menuLabelClick} className="navbar-toggler" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="true"
                                 aria-label="Toggle navigation">

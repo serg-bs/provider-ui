@@ -4,6 +4,7 @@ import ErrorIndicator from "../error-indicator";
 import Spinner from "../spinner";
 import ErrorAuth from "../error-auth";
 import Client from "./client";
+import "./client.css"
 import Validation from "../validation";
 
 export default class ClientDetails extends Component {
@@ -89,7 +90,7 @@ export default class ClientDetails extends Component {
 
         return (
             <div>
-                <div className="person-details card top">
+                <div className="person-details card card-body top-client">
                     {errorMessage}
                     {spinner}
                     {content}
