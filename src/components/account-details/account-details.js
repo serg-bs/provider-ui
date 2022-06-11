@@ -66,9 +66,6 @@ export default class AccountDetails extends Component {
             "amount": amount,
             "payDateTime": Date.now()
         }, jwtToken)
-
-        alert('ggg')
-
     }
 
     render() {

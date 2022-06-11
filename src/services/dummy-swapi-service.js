@@ -107,4 +107,9 @@ export default class DummySwapiService {
         return this._clients;
     };
 
+    addTariff = async (tarrif, jwtToken) => {
+        console.log(tarrif)
+
+    };
+
 }
