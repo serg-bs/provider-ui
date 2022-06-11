@@ -79,11 +79,12 @@ export default class AccountDetails extends Component {
         const content = data ? <AccountPage {...data} addPayment={this.addPayment} tariffName={this.state.tariffName}/> : null;
 
         return (
-            <div className="person-details item-details card card-position col-md-6 main-block-right ">
+            <div className=" item-details card card-position col-md-6 main-block-right ">
                 {errorMessage}
                 {spinner}
                 {content}
             </div>
+
         )
 
     }

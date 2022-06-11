@@ -15,27 +15,14 @@ const TariffList = (props) => {
     })
     return (
         <div>
-        <h1 className="head-tariff-word" align="center">Тарифы</h1>
-        <div className="top">
-        <div className="tariff__block">
-            <div className="tariff__wrapper">
-                <div className="tariff1"></div>
-            </div>
-            <div className="tariff__wrapper">
-                <div className="tariff1"></div>
-            </div>
-            <div className="tariff__wrapper">
-                <div className="tariff1"></div>
-            </div>
-            <div className="tariff__wrapper">
-                <div className="tariff1"></div>
-            </div>
-            <div className="tariff__wrapper">
-                <div className="tariff1"></div>
+            <h1 className="head-tariff-word" align="center">Тарифы</h1>
+            <div className="top">
+                <div className="tariff__block">
+                    {elements}
+                </div>
             </div>
         </div>
-        </div>
-        </div>
+
             // <table className="table position">
             //     <thead className="list-head">
             //     <tr>

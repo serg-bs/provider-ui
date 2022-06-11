@@ -18,11 +18,9 @@ const BottomInterface = () => {
                             <h4 className="footer__title">Наши контакты</h4>
                             <div className="footer__address">
                             <pre>г. Владимир, ул.Мира, 70.</pre>
-                            <pre>
-                            пн-пт с 08:00 до 20:00; сб-вс c 10.00 до 18:00
-                               </pre>
-                                <pre>
-                                8 (800) 550 33 33 (с 8 до 23)</pre>
+                            <pre>пн-пт с 08:00 до 20:00;</pre>
+                                <pre>сб-вс c 10.00 до 18:00;</pre>
+                                <pre>8 (800) 550 33 33 (с 8 до 23)</pre>
                         </div>
                         </div>
                         <div className="footer__block">

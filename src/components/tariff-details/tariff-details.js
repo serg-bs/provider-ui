@@ -85,7 +85,7 @@ export default class TariffDetails extends Component {
         const content = data ? <TariffList tariffData={data} updateTariff={this.updateTariff}
                                            current={this.state.account.tariffId}></TariffList> : null;
         return (
-            <div className="person-details">
+            <div>
                 {errorMessage}
                 {spinner}
                 {content}
