@@ -57,6 +57,18 @@ export default class AccountDetails extends Component {
             }).catch(this.onError);
     }
 
+    updateAccount = (account) => {
+        const {jwtToken, swapiService} = this.props;
+        swapiService.updateAccount(jwtToken, account)
+            .then((data) => {
+                this.setState({
+                    error: false
+                });
+            return this.update()
+
+            }).catch(this.onError);
+    }
+
     componentDidMount() {
         this.update();
     }
@@ -67,15 +79,19 @@ export default class AccountDetails extends Component {
     }
     addPayment = (amount) => {
         const {jwtToken, swapiService} = this.props;
-        swapiService.addPayment( {
+        swapiService.addPayment({
             "accountId": this.state.data.id,
             "amount": amount,
             "payDateTime": Date.now()
-        }, jwtToken)
-
+        }, jwtToken).then((data) => {
             this.setState({
+                error: false,
                 completePay: true
-            })
+            });
+            var account = {...this.state.data}
+            account.balance += Number(amount)
+            return this.updateAccount(account)
+        }).catch(this.onError);
     }
 
     render() {
@@ -86,18 +102,19 @@ export default class AccountDetails extends Component {
         }
 
         const errorMessage = hasError ? <ErrorIndicator/> : null;
-        const spinner = !data ? <Spinner /> : null;
-        const content = data ? <AccountPage {...data} addPayment={this.addPayment} tariffName={this.state.tariffName}/> : null;
+        const spinner = !data ? <Spinner/> : null;
+        const content = data && !hasError ?
+            <AccountPage {...data} addPayment={this.addPayment} tariffName={this.state.tariffName}/> : null;
         const Error = completePay ? <WindowComplete title="Оплаченно" okComplete={this.okCompletePay}/> : null;
         return (
-<div className="col-md-6">
+            <div className="col-md-6">
     {Error}
                 <div className="person-details item-details card card-position">
-                {errorMessage}
-                {spinner}
-                {content}
-    </div>
-    </div>
+                    {errorMessage}
+                    {spinner}
+                    {content}
+                </div>
+            </div>
 
         )
 

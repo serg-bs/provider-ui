@@ -12,10 +12,14 @@ const TariffsList = (props) => {
             <Tariffsitems {...item} updateTariff={updateTariff}/>
         )
     })
+
+    const addTariff = () => {
+        props.addTariff(tariffname, tariffspeed, tariffprice)
+    }
+
     console.log(elements)
     const class3 = ('border-block row mb2 col-md-6')
     return (
-        <div className="person-details card top">
         <table className="table color-element">
             <thead className="list-head ">
             <tr>
@@ -23,12 +27,11 @@ const TariffsList = (props) => {
                 <th scope="col"><input className={class3} placeholder="Название" value={tariffname} onChange={o => settariffname(o.target.value)}></input></th>
                 <th scope="col"><input className={class3} placeholder="Скорость" value={tariffspeed} onChange={o => settariffspeed(o.target.value)}></input></th>
                 <th scope="col"><input className={class3} placeholder="Цена" value={tariffprice} onChange={o => settariffprice(o.target.value)}></input></th>
-                <th scope="col"><button className="border-block btn-success">ADD</button></th>
+                <th scope="col"><button className="border-block btn-success" onClick={addTariff}>Добавить</button></th>
             </tr>
             </thead>
             <tbody>{elements}</tbody>
         </table>
-        </div>
     );
 };
 export default TariffsList

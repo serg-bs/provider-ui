@@ -16,8 +16,8 @@ const Payments = (props) => {
                 <thead className="list-head">
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">amount</th>
-                    <th scope="col">payDateTime</th>
+                    <th scope="col">Сумма</th>
+                    <th scope="col">Дата время платежа</th>
                 </tr>
                 </thead>
                 <tbody>{elements2}</tbody>

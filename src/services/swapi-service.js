@@ -92,6 +92,27 @@ export default class SwapiService {
         return await res.json();
     };
 
+    deleteResource = async (url, jwtToken) => {
+        const res = await fetch(`${this._apiBase}${url}`,
+            {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Authorization': `Bearer ${jwtToken}`
+                }
+            });
+        if (res.status === 403 ||
+            res.status === 401) {
+            throw new Error('Redirect to login')
+        }
+        if (!res.ok) {
+            throw new Error(`Could not fetch ${url}, received ${res.status}`)
+        }
+
+        return await res.json();
+    };
+
     login = async (payload) => {
         return await this.getResourceByPost(`/clients/login/`, payload);
     };
@@ -106,14 +127,24 @@ export default class SwapiService {
         return await this.putResource(`/clients/${clientId}`, payload, jwtToken);
     };
 
+    getClients = async (jwtToken) => {
+        const client = await this.getResourceByGet(`/clients/`, jwtToken);
+        return client;
+    };
+
     getClient = async (jwtToken) => {
         const {clientId} = jwt(jwtToken);
         const client = await this.getResourceByGet(`/clients/${clientId}`, jwtToken);
         return client;
     };
 
+    deleteClient = async (jwtToken, clientId) => {
+        const client = await this.deleteResource(`/clients/${clientId}`, jwtToken);
+        return client;
+    };
+
     getTariffs = async (jwtToken) => {
-        const res = await this.getResourceByGet(`/tariffs/`, jwtToken);
+        const res = await this.getResourceByGet(`/tariffs/?disabled=false`, jwtToken);
         return res;
     };
     getTariff = async (tariffId, jwtToken) => {
@@ -131,6 +162,14 @@ export default class SwapiService {
     addPayment = async (payment, jwtToken) => {
         console.log(payment)
         return await this.getResourceByPost(`/payments/`, payment, jwtToken);
+    };
+
+    addTariff = async (tariff, jwtToken) => {
+        return await this.getResourceByPost(`/tariffs/`, tariff, jwtToken);
+    };
+
+    updateTariff = async (id, tariff, jwtToken) => {
+        return await this.getResourceByPut(`/tariffs/${id}`, tariff, jwtToken);
     };
 
     createAccount = async (payload) => {

@@ -17,10 +17,10 @@ const TariffList = (props) => {
                 <thead className="list-head">
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">name</th>
-                    <th scope="col">Speed</th>
-                    <th scope="col">Price</th>
-                    <th scope="coll">connect</th>
+                    <th scope="col">Имя тарифа</th>
+                    <th scope="col">Скорость</th>
+                    <th scope="col">Цена</th>
+                    <th scope="coll">Подключить</th>
                 </tr>
                 </thead>
                 <tbody>{elements}</tbody>

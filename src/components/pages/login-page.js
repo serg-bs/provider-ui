@@ -35,14 +35,12 @@ const LoginPage = ({isLoggedIn, onLogin}) => {
                     <label htmlFor="exampleInputPassword1" className="form-label mt-4">Login</label>
                     <input id="login"
                            name="login"
-                           // value="serg"
                            className="form-control"
                            placeholder="Введите логин"></input>
                     <label htmlFor="exampleInputPassword1" className="form-label mt-4">Password</label>
                     <input id="password"
                            name="password"
                            type="password"
-                           // value="password"
                            className="form-control"
                            placeholder="Введите пароль"></input>
                     <p>First time? <Link to="/register">Create an account</Link>.</p>
