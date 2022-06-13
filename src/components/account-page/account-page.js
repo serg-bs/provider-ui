@@ -8,6 +8,7 @@ const AccountPage = (props) => {
 
     const addPayment = () => {
         props.addPayment(payAmount)
+        setPayAmount('')
     }
     const class2 = "list-group-item"
     const status = props.status ? "Online" : "Offline";

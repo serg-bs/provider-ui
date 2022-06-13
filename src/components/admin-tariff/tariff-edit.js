@@ -4,9 +4,9 @@ import './tariff-edit.css';
 import ErrorIndicator from "../error-indicator";
 import Spinner from "../spinner";
 import ErrorAuth from "../error-auth";
-import Menu from "../menu/menu";
-import TariffList from "../tarrifs/tariffList";
 import TariffsList from "./tariffsList";
+import AdminClientList from "../admin-client/admin-client-list";
+import WindowComplete from "../tarrifs/window-complete";
 
 export default class TariffEdit extends Component {
 
@@ -67,12 +67,27 @@ export default class TariffEdit extends Component {
             }).catch(this.onError);
     }
 
-    updateTariff = (tariffId) => {
-        var account = {...this.state.account}
-        account.tariffId = tariffId
-        this.updateAccount(account)
-        this.setState({
-            account: {...account}
+    addTariff = (tariffname, tariffspeed, tariffprice) => {
+        const {jwtToken, swapiService} = this.props;
+        swapiService.addTariff( {
+            "name": tariffname,
+            "speed": tariffspeed,
+            "price": tariffprice
+        }, jwtToken).then(() => {
+            return this.getTariff();
+        })
+    }
+
+    updateTariff = (tariffId, disabled) => {
+        const {jwtToken, swapiService} = this.props;
+        let tariff = this.state.data.filter(item => item.id == tariffId);
+        swapiService.updateTariff(tariffId, {
+            "name": tariff.name,
+            "speed": tariff.speed,
+            "price": tariff.price,
+            "disabled": disabled
+        }, jwtToken).then(() => {
+            return this.getTariff();
         })
     }
 
@@ -81,17 +96,21 @@ export default class TariffEdit extends Component {
         if (!isLoggedIn) {
             return <ErrorAuth/>
         }
-        if (hasError) {
-            return <ErrorIndicator/>
-        }
-        if (!data) {
-            return <Spinner/>;
-        }
+        const {complete} = this.state;
+        const errorMessage = hasError ? <ErrorIndicator/> : null;
+        const spinner = !data ? <Spinner /> : null;
+        const content = data ? <TariffsList tariffData={data} addTariff={this.addTariff} updateTariff={this.updateTariff}
+                                            current={this.state.account.tariffId}></TariffsList> : null;
+        const Error = complete ? <WindowComplete/> : null;
         return (
             <div>
-                <TariffsList tariffData={data} updateTariff={this.updateTariff}
-                         current={this.state.account.tariffId}></TariffsList>
-            </div>
+                {Error}
+                <div className="person-details card top">
+                    {errorMessage}
+                    {spinner}
+                    {content}
+                </div></div>
         )
     }
+
 }

@@ -1,33 +1,90 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import DummySwapiService from "../../services/dummy-swapi-service";
-import Tariffsitems from "../tarrifs/tariffsitems";
-import AdminClientItems from "./admin-client-items";
-import "../admin-tariff/tariff-edit.css"
-const AdminClient = () => {
-    const class5 = ("  admin-client-list-input row mb2")
-    let clients = new DummySwapiService()._clients;
-const  elements = clients.map ((item) => {
-return (
-<AdminClientItems {...item} />
-)
-})
-    return (
-        <div className="card top person-details">
-          <table className="table ">
-              <thead>
-              <tr>
-                  <th><input className={class5} placeholder="имя"></input></th>
-                  <th scope="col"><input className={class5} placeholder="Фамилия"></input></th>
-                  <th scope="col"><input className={class5} placeholder="Отчество"></input></th>
-                  <th scope="col"><input className={class5} placeholder="Адресс"></input></th>
-                  <th scope="coll"><input className={class5} placeholder="ID"></input></th>
-                  <th><button className="border-radius btn-success col-md-6">Поиск</button></th>
-              </tr>
-              </thead>
-              <tbody>{elements}</tbody>
-          </table>
-        </div>
-    )
+import React, {Component} from 'react';
+
+
+import ErrorIndicator from "../error-indicator";
+import Spinner from "../spinner";
+import ErrorAuth from "../error-auth";
+import AdminClientList from "./admin-client-list";
+import TariffList from "../tarrifs/tariffList";
+import WindowComplete from "../tarrifs/window-complete";
+
+export default class AdminClient extends Component {
+
+    state = {
+        data: null,
+        hasError: false,
+        isLoggedIn: this.props.isLoggedIn
+    };
+
+    onError = (error) => {
+        if (error && error.message === 'Redirect to login') {
+            this.setState({
+                isLoggedIn: false
+            })
+        } else {
+            this.setState({
+                hasError: true
+            })
+        }
+    };
+
+    getClients = () => {
+        const {jwtToken, swapiService} = this.props;
+        swapiService.getClients(jwtToken)
+            .then((data) => {
+                this.setState({
+                    data,
+                    error: false
+                });
+            }).catch(this.onError);
+    }
+
+    componentDidMount() {
+        this.getClients()
+    }
+
+    deleteClient = (clientId) => {
+        const {jwtToken, swapiService} = this.props;
+        swapiService.deleteClient(jwtToken, clientId)
+            .then((data) => {
+                this.setState({
+                    error: false
+                });
+                return this.getClients()
+            }).catch(this.onError);
+    }
+
+    getAccount = () => {
+        const {jwtToken, swapiService} = this.props;
+        // swapiService.getAccount(jwtToken)
+        //     .then((data) => {
+        //         this.setState({
+        //             account: {...data}
+        //         })
+        //         return this.getTariff()
+        //     }).catch(this.onError);
+    }
+
+
+
+    render() {
+        const {hasError, data, isLoggedIn} = this.state;
+        if (!isLoggedIn) {
+            return <ErrorAuth/>
+        }
+        const {complete} = this.state;
+        const errorMessage = hasError ? <ErrorIndicator/> : null;
+        const spinner = !data ? <Spinner /> : null;
+        const content = data ? <AdminClientList clients={data} deleteClient={this.deleteClient} ></AdminClientList> : null;
+        const Error = complete ? <WindowComplete/> : null;
+        return (
+            <div>
+                {Error}
+                <div className="person-details card top">
+                    {errorMessage}
+                    {spinner}
+                    {content}
+                </div></div>
+        )
+    }
 }
-export default AdminClient

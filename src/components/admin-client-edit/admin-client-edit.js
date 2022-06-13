@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import "../client/client.css"
-import Menu from "../menu/menu";
 import Validation from "../validation";
+
 const AdminClientEdit = (props) => {
 
     const [name, setName] = useState(props.name);
