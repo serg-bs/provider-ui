@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import WindowComplete from "../tarrifs/window-complete";
 
 import './person-details.css';
 import ErrorIndicator from "../error-indicator";
@@ -11,9 +12,9 @@ export default class PersonDetails extends Component {
     state = {
         data: null,
         hasError: false,
-        isLoggedIn: this.props.isLoggedIn
+        isLoggedIn: this.props.isLoggedIn,
+        completePay: false
     };
-
     onError = (error) => {
         if (error && error.message === 'Redirect to login') {
             this.setState({
@@ -46,15 +47,17 @@ export default class PersonDetails extends Component {
         const errorMessage = hasError ? <ErrorIndicator/> : null;
         const spinner = !data ? <Spinner /> : null;
         const content = data ? <MainPage {...data}/> : null;
-
         return (
+
+
             <div className=" card-position col-md-6">
+                {Error}
                 <div className="person-details item-details card">
                 {errorMessage}
                 {spinner}
                 {content}
                 </div>
-            </div>
+    </div>
          )
     }
 }

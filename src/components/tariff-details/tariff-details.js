@@ -95,7 +95,7 @@ okComplete = () => {
         const spinner = !data ? <Spinner /> : null;
         const content = data ? <TariffList tariffData={data} updateTariff={this.updateTariff}
                                            current={this.state.account.tariffId}></TariffList> : null;
-        const Error = complete ? <WindowComplete okComplete={this.okComplete}/> : null;
+        const Error = complete ? <WindowComplete title="Подключенно" okComplete={this.okComplete}/> : null;
         return (
             <div>
                 {Error}

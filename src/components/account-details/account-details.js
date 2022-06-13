@@ -6,6 +6,7 @@ import Spinner from "../spinner";
 import ErrorAuth from "../error-auth";
 import AccountPage from "../account-page/account-page";
 import MainPage from "../main-page/main-page";
+import WindowComplete from "../tarrifs/window-complete";
 
 export default class AccountDetails extends Component {
 
@@ -13,7 +14,8 @@ export default class AccountDetails extends Component {
         data: null,
         tariffName: '',
         hasError: false,
-        isLoggedIn: this.props.isLoggedIn
+        isLoggedIn: this.props.isLoggedIn,
+        completePay: false
     };
 
     onError = (error) => {
@@ -58,7 +60,11 @@ export default class AccountDetails extends Component {
     componentDidMount() {
         this.update();
     }
-
+    okCompletePay = () => {
+        this.setState({
+            completePay: false
+        })
+    }
     addPayment = (amount) => {
         const {jwtToken, swapiService} = this.props;
         swapiService.addPayment( {
@@ -66,9 +72,14 @@ export default class AccountDetails extends Component {
             "amount": amount,
             "payDateTime": Date.now()
         }, jwtToken)
+
+            this.setState({
+                completePay: true
+            })
     }
 
     render() {
+        const {completePay} = this.state;
         const {hasError, data, isLoggedIn} = this.state;
         if (!isLoggedIn) {
             return <ErrorAuth/>
@@ -77,9 +88,10 @@ export default class AccountDetails extends Component {
         const errorMessage = hasError ? <ErrorIndicator/> : null;
         const spinner = !data ? <Spinner /> : null;
         const content = data ? <AccountPage {...data} addPayment={this.addPayment} tariffName={this.state.tariffName}/> : null;
-
+        const Error = completePay ? <WindowComplete title="Оплаченно" okComplete={this.okCompletePay}/> : null;
         return (
 <div className="col-md-6">
+    {Error}
                 <div className="person-details item-details card card-position">
                 {errorMessage}
                 {spinner}

@@ -5,6 +5,7 @@ import Spinner from "../spinner";
 import ErrorAuth from "../error-auth";
 import Client from "./client";
 import Validation from "../validation";
+import WindowComplete from "../tarrifs/window-complete";
 
 export default class ClientDetails extends Component {
 
@@ -12,9 +13,14 @@ export default class ClientDetails extends Component {
         data: null,
         hasError: false,
         isLoggedIn: this.props.isLoggedIn,
-        validation: ''
+        validation: '',
+        completeClient: false
     };
-
+    okCompleteClient = () => {
+        this.setState({
+            completeClient: false
+        })
+    }
     onError = (error) => {
         if (error && error.message === 'Redirect to login') {
             this.setState({
@@ -75,13 +81,18 @@ export default class ClientDetails extends Component {
             }).catch((err) => {
 
         });
+        this.setState({
+            completeClient: true
+        })
     }
 
     render() {
+        const {completeClient} = this.state;
         const {hasError, data, isLoggedIn} = this.state;
         if (!isLoggedIn) {
             return <ErrorAuth/>
         }
+        const Error = completeClient ? <WindowComplete title="Сохраненно" okComplete={this.okCompleteClient}/> : null;
         const errorMessage = hasError ? <ErrorIndicator/> : null;
         const spinner = !data ? <Spinner/> : null;
         const content = data ?
@@ -89,6 +100,7 @@ export default class ClientDetails extends Component {
 
         return (
             <div>
+                {Error}
                 <div className="person-details card top">
                     {errorMessage}
                     {spinner}
