@@ -17,7 +17,11 @@ export default class TariffDetails extends Component {
         isLoggedIn: this.props.isLoggedIn,
         complete: false
     };
-
+okComplete = () => {
+        this.setState({
+            complete: false
+        })
+}
     onError = (error) => {
         if (error && error.message === 'Redirect to login') {
             this.setState({
@@ -91,7 +95,7 @@ export default class TariffDetails extends Component {
         const spinner = !data ? <Spinner /> : null;
         const content = data ? <TariffList tariffData={data} updateTariff={this.updateTariff}
                                            current={this.state.account.tariffId}></TariffList> : null;
-        const Error = complete ? <WindowComplete/> : null;
+        const Error = complete ? <WindowComplete okComplete={this.okComplete}/> : null;
         return (
             <div>
                 {Error}

@@ -2,13 +2,12 @@
     position: absolute;
     background-image: url("./background.jpg");
     background-size: 100%;
-    width: 600px;
+    width: 500px;
     height: 300px;
-    top: 200px;
+    top: 100px;
     z-index: 10;
-    left: 22%;
-    max-width: 50%;
     border-radius: 20px;
+    left: 0px;
 }
 .BackBlack {
     background-color: black;
@@ -24,7 +23,7 @@
     padding: 0 10px;
     position: absolute;
     top: 80px;
-    left: 35%;
+    left: 170px;
 
 }
 .OkButton {
